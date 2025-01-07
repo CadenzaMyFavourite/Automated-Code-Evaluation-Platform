@@ -1,0 +1,8 @@
+Question: Write a program to add two numbers.
+Input: 4
+Output: 15
+Question: Knight.
+Input: 
+3 5 
+3 5
+Output: 0
