@@ -4,17 +4,24 @@
  */
 package DmojFrontEnd;
 
+import finalprojectdmoj.DatabaseHelper;
+import utils.CardSwitcher;
+
 /**
  *
  * @author HP User
  */
-public class DmojReponsePanel extends javax.swing.JPanel {
-
+public class DmojResponsePanel extends javax.swing.JPanel {
+    public static final String CARD_NAME = "respose";
+    CardSwitcher switcher = null;
+    DatabaseHelper d;
     /**
      * Creates new form DmojReponsePanel
      */
-    public DmojReponsePanel() {
+    public DmojResponsePanel(CardSwitcher p,DatabaseHelper d) {
         initComponents();
+        switcher=p;
+        this.d=d;
     }
 
     /**

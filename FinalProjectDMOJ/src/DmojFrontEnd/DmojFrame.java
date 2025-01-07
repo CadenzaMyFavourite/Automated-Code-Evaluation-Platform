@@ -4,28 +4,35 @@
  */
 package DmojFrontEnd;
 
+import finalprojectdmoj.DatabaseHelper;
 import java.awt.CardLayout;
+import utils.CardSwitcher;
 
 /**
  *
  * @author HP User
  */
-public class DmojFrame extends javax.swing.JFrame {
+public class DmojFrame extends javax.swing.JFrame implements CardSwitcher {
     CardLayout cl;
+    DatabaseHelper d;
     /**
      * Creates new form DmojFrame
      */
     public DmojFrame() {
         initComponents();
+        d=new DatabaseHelper();
         cl = new CardLayout();
         cardPanel.setLayout(cl);
 
         //add 3 panels to the CardLayout
         addPanels();
-        
+        switchToCard(DmojIntroPanel.CARD_NAME);
     }
     private void addPanels() {
-        
+        cardPanel.add(new DmojIntroPanel(this,d),DmojIntroPanel.CARD_NAME);
+        cardPanel.add(new DmojLoginPanel(this,d),DmojLoginPanel.CARD_NAME);
+        cardPanel.add(new DmojResponsePanel(this,d),DmojResponsePanel.CARD_NAME);
+        cardPanel.add(new DmojSignUpPanel(this,d),DmojSignUpPanel.CARD_NAME);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,19 +45,29 @@ public class DmojFrame extends javax.swing.JFrame {
 
         cardPanel = new javax.swing.JPanel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         javax.swing.GroupLayout cardPanelLayout = new javax.swing.GroupLayout(cardPanel);
         cardPanel.setLayout(cardPanelLayout);
         cardPanelLayout.setHorizontalGroup(
             cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 884, Short.MAX_VALUE)
         );
         cardPanelLayout.setVerticalGroup(
             cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.CardLayout());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -91,6 +108,7 @@ public class DmojFrame extends javax.swing.JFrame {
     }
     public void switchToCard(String cardName) {
         cl.show(cardPanel, cardName);
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cardPanel;
