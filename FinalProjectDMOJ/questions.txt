@@ -5,4 +5,5 @@ Question: Knight.
 Input: 
 3 5 
 3 5
-Output: 0
+Output: 
+0

@@ -16,7 +16,7 @@ class Question {
     public Question(String questionText, String input, String expectedOutput) {
         this.questionText = questionText;
         this.input = input;
-        this.expectedOutput = expectedOutput;
+        this.expectedOutput = expectedOutput; 
     }
 }
 

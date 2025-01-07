@@ -37,6 +37,12 @@ class CodeEvaluator {
             processInput.newLine();
         }
         processInput.close();
+        
+        boolean finished = runProcess.waitFor(30, java.util.concurrent.TimeUnit.SECONDS);
+        if (!finished) {
+            runProcess.destroy();
+            return "Execution Timed Out";
+        }
 
         // Capture the output from the program
         BufferedReader processOutput = new BufferedReader(new InputStreamReader(runProcess.getInputStream()));
