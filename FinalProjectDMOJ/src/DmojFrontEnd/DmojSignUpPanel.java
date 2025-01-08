@@ -24,6 +24,7 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
         switcher=p;
         this.d=d;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
