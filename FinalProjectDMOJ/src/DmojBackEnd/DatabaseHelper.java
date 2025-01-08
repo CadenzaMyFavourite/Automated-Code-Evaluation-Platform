@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package finalprojectdmoj;
+package DmojBackEnd;
 
 import java.security.NoSuchAlgorithmException;
 import org.json.JSONArray;
@@ -13,12 +13,6 @@ import static utils.SQLQueries.sendSQLQuery;
  *
  * @author HP User
  */
-
-import Objects.Student;
-import Objects.Teacher;
-import java.util.ArrayList;
-import utils.SQLQueries;
-
 public class DatabaseHelper {
     //return 1 for student, 2 for teacher 0, for not exsit
     public int userExists(String name){

@@ -4,7 +4,7 @@
  */
 package DmojFrontEnd;
 
-import finalprojectdmoj.DatabaseHelper;
+import DmojBackEnd.DatabaseHelper;
 import java.awt.CardLayout;
 import utils.CardSwitcher;
 
