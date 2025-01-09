@@ -4,7 +4,7 @@
  */
 package DmojFrontEnd;
 
-import finalprojectdmoj.*;
+import DmojBackEnd.DatabaseHelper;
 import javax.swing.JOptionPane;
 import utils.CardSwitcher;
 

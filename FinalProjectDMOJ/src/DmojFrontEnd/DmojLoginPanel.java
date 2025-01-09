@@ -5,7 +5,7 @@
 package DmojFrontEnd;
 
 import Objects.Student;
-import finalprojectdmoj.DatabaseHelper;
+import DmojBackEnd.DatabaseHelper;
 import utils.CardSwitcher;
 
 /**

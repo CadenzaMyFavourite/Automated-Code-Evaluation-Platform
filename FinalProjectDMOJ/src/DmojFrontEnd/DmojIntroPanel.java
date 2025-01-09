@@ -4,7 +4,7 @@
  */
 package DmojFrontEnd;
 
-import finalprojectdmoj.*;
+import DmojBackEnd.DatabaseHelper;
 import utils.CardSwitcher;
 /**
  *
