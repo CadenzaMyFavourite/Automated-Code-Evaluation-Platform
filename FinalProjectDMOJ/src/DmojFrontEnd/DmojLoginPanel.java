@@ -4,6 +4,7 @@
  */
 package DmojFrontEnd;
 
+import Objects.Student;
 import DmojBackEnd.DatabaseHelper;
 import utils.CardSwitcher;
 
@@ -36,20 +37,26 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        passwordTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        RegisterPanel = new javax.swing.JButton();
+        RegisterButton = new javax.swing.JButton();
 
         jLabel1.setText("Username");
 
-        jTextField1.setText("jTextField1");
+        nameTextField.setPreferredSize(new java.awt.Dimension(164, 30));
 
         jLabel2.setText("Password");
 
-        jTextField2.setText("jTextField2");
+        passwordTextField.setMinimumSize(new java.awt.Dimension(164, 30));
+        passwordTextField.setPreferredSize(new java.awt.Dimension(164, 30));
+        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextFieldActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -60,10 +67,10 @@ public class DmojLoginPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Don't have an account? register");
 
-        RegisterPanel.setText("register");
-        RegisterPanel.addActionListener(new java.awt.event.ActionListener() {
+        RegisterButton.setText("register");
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterPanelActionPerformed(evt);
+                RegisterButtonActionPerformed(evt);
             }
         });
 
@@ -75,21 +82,25 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(398, 398, 398)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jLabel2))
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(394, 394, 394)
+                        .addComponent(RegisterButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(358, 358, 358)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(394, 394, 394)
-                        .addComponent(RegisterPanel)))
+                        .addGap(346, 346, 346)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(397, 397, 397)
+                        .addComponent(jButton1)))
                 .addContainerGap(368, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,39 +109,57 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 .addGap(114, 114, 114)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RegisterPanel)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addComponent(RegisterButton)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        
+        String username=nameTextField.getText();
+        String password=passwordTextField.getText();
+        Student stu = new Student (username, password);
+        if (d.userExists(username)==1){
+            if (d.loginUser(username, password) == 1) {
+                DmojResponsePanel.setS(stu);
+                System.out.println("checkpoint");
+                System.out.println(DmojResponsePanel.s.getId());
+            }
+            switcher.switchToCard(DmojResponsePanel.CARD_NAME);
+        }
+        else if(d.userExists(username)==2){
+            
+        }
+        else{
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void RegisterPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterPanelActionPerformed
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         switcher.switchToCard(DmojSignUpPanel.CARD_NAME);
-    }//GEN-LAST:event_RegisterPanelActionPerformed
+    }//GEN-LAST:event_RegisterButtonActionPerformed
+
+    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RegisterPanel;
+    private javax.swing.JButton RegisterButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JTextField passwordTextField;
     // End of variables declaration//GEN-END:variables
 }

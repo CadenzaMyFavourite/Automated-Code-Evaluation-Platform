@@ -20,7 +20,7 @@ public class DmojFrame extends javax.swing.JFrame implements CardSwitcher {
      */
     public DmojFrame() {
         initComponents();
-        d=new DatabaseHelper();
+        d = new DatabaseHelper();
         cl = new CardLayout();
         cardPanel.setLayout(cl);
 
@@ -33,6 +33,11 @@ public class DmojFrame extends javax.swing.JFrame implements CardSwitcher {
         cardPanel.add(new DmojLoginPanel(this,d),DmojLoginPanel.CARD_NAME);
         cardPanel.add(new DmojResponsePanel(this,d),DmojResponsePanel.CARD_NAME);
         cardPanel.add(new DmojSignUpPanel(this,d),DmojSignUpPanel.CARD_NAME);
+//        cardPanel.add(new DmojTeacherAddPanel(this,d),DmojTeacherAddPanel.CARD_NAME);
+//        cardPanel.add(new DmojTeacherListPanel(this,d),DmojTeacherListPanel.CARD_NAME);
+//        cardPanel.add(new DmojTeacherMenu(this,d),DmojTeacherMenu.CARD_NAME);
+//        cardPanel.add(new DmojTeacherViewPanel(this,d),DmojTeacherViewPanel.CARD_NAME);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.

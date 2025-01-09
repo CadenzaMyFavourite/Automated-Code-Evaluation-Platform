@@ -9,5 +9,10 @@ package Objects;
  * @author readingsdoc.
  */
 public class Student extends User {
+
+    public Student(String id, String password) {
+        this.id = id;
+        this.password = password;
+    }
     
 }

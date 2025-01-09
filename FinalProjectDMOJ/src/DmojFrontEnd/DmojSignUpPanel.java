@@ -133,8 +133,8 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
             
         }
         else{
-           // d.registerUser(username, password);
-            switcher.switchToCard(DmojResponsePanel.CARD_NAME);
+           d.registerUser(username, password);
+           switcher.switchToCard(DmojLoginPanel.CARD_NAME);
         }
     }//GEN-LAST:event_SignUpButtonActionPerformed
 
