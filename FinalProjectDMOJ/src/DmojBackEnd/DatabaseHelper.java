@@ -60,7 +60,8 @@ public class DatabaseHelper {
             JSONArray jsonArray = new JSONArray(response);
             
             JSONObject userInfo = jsonArray.getJSONObject(0);
-            String storedPassword = userInfo.getString("Password");
+            System.out.println(userInfo);
+            String storedPassword = userInfo.getString("password");
             //if password matches
             if (storedPassword.equals(password)) {
                 // successfull login

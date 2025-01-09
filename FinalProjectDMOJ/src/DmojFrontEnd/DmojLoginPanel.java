@@ -44,7 +44,11 @@ public class DmojLoginPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Username");
 
+        nameTextField.setPreferredSize(new java.awt.Dimension(164, 30));
+
         jLabel2.setText("Password");
+
+        passwordTextField.setPreferredSize(new java.awt.Dimension(164, 30));
 
         jButton1.setText("login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +89,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(394, 394, 394)
                         .addComponent(RegisterButton)))
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +108,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RegisterButton)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,10 +116,10 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
         Student stu = new Student (username, password);
+        System.out.println(d.userExists(username));
         if (d.userExists(username)==1){
             if (d.loginUser(username, password) == 1) {
                 DmojResponsePanel.setS(stu);
-                System.out.println(DmojResponsePanel.s.getId());
             }
             switcher.switchToCard(DmojResponsePanel.CARD_NAME);
         }

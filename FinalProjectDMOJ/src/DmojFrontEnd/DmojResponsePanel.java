@@ -16,7 +16,11 @@ public class DmojResponsePanel extends javax.swing.JPanel {
     public static final String CARD_NAME = "respose";
     CardSwitcher switcher = null;
     DatabaseHelper d;
-    public static Student s;
+    private static Student s;
+
+    public static Student getS() {
+        return s;
+    }
     
     /**
      * Creates new form DmojReponsePanel
