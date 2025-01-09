@@ -4,6 +4,7 @@
  */
 package DmojFrontEnd;
 
+import Objects.Student;
 import DmojBackEnd.DatabaseHelper;
 import utils.CardSwitcher;
 
@@ -39,7 +40,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         passwordTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        RegisterPanel = new javax.swing.JButton();
+        RegisterButton = new javax.swing.JButton();
 
         jLabel1.setText("Username");
 
@@ -54,10 +55,10 @@ public class DmojLoginPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Don't have an account? register");
 
-        RegisterPanel.setText("register");
-        RegisterPanel.addActionListener(new java.awt.event.ActionListener() {
+        RegisterButton.setText("register");
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterPanelActionPerformed(evt);
+                RegisterButtonActionPerformed(evt);
             }
         });
 
@@ -83,7 +84,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(394, 394, 394)
-                        .addComponent(RegisterPanel)))
+                        .addComponent(RegisterButton)))
                 .addContainerGap(368, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,7 +103,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RegisterPanel)
+                .addComponent(RegisterButton)
                 .addContainerGap(128, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -110,8 +111,12 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
-        if(d.userExists(username)==1 ){
-            d.loginUser(username, password);
+        Student stu = new Student (username, password);
+        if (d.userExists(username)==1){
+            if (d.loginUser(username, password) == 1) {
+                DmojResponsePanel.setS(stu);
+                System.out.println(DmojResponsePanel.s.getId());
+            }
             switcher.switchToCard(DmojResponsePanel.CARD_NAME);
         }
         else if(d.userExists(username)==2){
@@ -122,13 +127,13 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void RegisterPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterPanelActionPerformed
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         switcher.switchToCard(DmojSignUpPanel.CARD_NAME);
-    }//GEN-LAST:event_RegisterPanelActionPerformed
+    }//GEN-LAST:event_RegisterButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RegisterPanel;
+    private javax.swing.JButton RegisterButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

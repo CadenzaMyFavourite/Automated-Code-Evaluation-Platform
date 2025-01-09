@@ -4,6 +4,7 @@
  */
 package DmojFrontEnd;
 
+import Objects.Student;
 import DmojBackEnd.DatabaseHelper;
 import utils.CardSwitcher;
 
@@ -15,6 +16,8 @@ public class DmojResponsePanel extends javax.swing.JPanel {
     public static final String CARD_NAME = "respose";
     CardSwitcher switcher = null;
     DatabaseHelper d;
+    public static Student s;
+    
     /**
      * Creates new form DmojReponsePanel
      */
@@ -22,6 +25,10 @@ public class DmojResponsePanel extends javax.swing.JPanel {
         initComponents();
         switcher=p;
         this.d=d;
+    }
+
+    public static void setS(Student stu) {
+        s = stu;
     }
 
     /**

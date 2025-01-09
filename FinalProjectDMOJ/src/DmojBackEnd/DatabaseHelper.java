@@ -13,6 +13,12 @@ import static utils.SQLQueries.sendSQLQuery;
  *
  * @author HP User
  */
+
+import Objects.Student;
+import Objects.Teacher;
+import java.util.ArrayList;
+import utils.SQLQueries;
+
 public class DatabaseHelper {
     //return 1 for student, 2 for teacher 0, for not exsit
     public int userExists(String name){
@@ -23,15 +29,15 @@ public class DatabaseHelper {
         String response = sendSQLQuery(query);
         
         System.out.println(response);
-        if (!(response==null)) {
+        if (!(response.equals("[]"))) {
             return 1;  
         }
         query = "SELECT * FROM dmojTeacher WHERE Username = '" + name + "';";
         response = sendSQLQuery(query);
-        if (!(response==null)) {
+        if (!(response.equals("[]"))) {
             return 2;  
         }
-        System.out.println("Error: User needs to register first.");
+        
         return 0;
     }
     public int registerUser(String name, String password)  {
@@ -92,4 +98,5 @@ public class DatabaseHelper {
             return 0;
         }
     }
+    
 }
