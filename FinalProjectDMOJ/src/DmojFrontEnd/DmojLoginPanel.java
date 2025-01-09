@@ -17,6 +17,8 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     CardSwitcher switcher = null;
     /**
      * Creates new form DmojLoginPanel
+     * @param p
+     * @param d
      */
     public DmojLoginPanel(CardSwitcher p,DatabaseHelper d) {
         initComponents();
@@ -113,6 +115,8 @@ public class DmojLoginPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void RegisterPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterPanelActionPerformed

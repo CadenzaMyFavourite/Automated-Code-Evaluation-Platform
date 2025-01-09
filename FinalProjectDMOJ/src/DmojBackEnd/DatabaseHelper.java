@@ -46,7 +46,7 @@ public class DatabaseHelper {
         return 0;
     }
     public int loginUser(String name, String password) {
-        //only doing this if the user exists
+        //only doing this if the user exists 
         if (userExists(name)==1) {
             // check if username and password match
             String query = "SELECT password FROM dmojStudent WHERE Username = '" + name + "';";
