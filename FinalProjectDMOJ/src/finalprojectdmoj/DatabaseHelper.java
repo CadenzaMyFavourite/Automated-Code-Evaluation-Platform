@@ -29,15 +29,15 @@ public class DatabaseHelper {
         String response = sendSQLQuery(query);
         
         System.out.println(response);
-        if (!(response==null)) {
+        if (!(response.equals("[]"))) {
             return 1;  
         }
         query = "SELECT * FROM dmojTeacher WHERE Username = '" + name + "';";
         response = sendSQLQuery(query);
-        if (!(response==null)) {
+        if (!(response.equals("[]"))) {
             return 2;  
         }
-        System.out.println("Error: User needs to register first.");
+        
         return 0;
     }
     public int registerUser(String name, String password)  {

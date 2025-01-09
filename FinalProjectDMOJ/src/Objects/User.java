@@ -9,8 +9,8 @@ package Objects;
  * @author readingsdoc.
  */
 public class User {
-    private String id;
-    private String password;
+    protected String id;
+    protected String password;
 
     public String getId() {
         return id;
