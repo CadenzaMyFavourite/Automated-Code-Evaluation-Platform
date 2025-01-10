@@ -9,7 +9,10 @@ import java.security.NoSuchAlgorithmException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static utils.SQLQueries.sendSQLQuery;
-
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 /**
  *
  * @author HP User
@@ -19,6 +22,7 @@ import Objects.Student;
 import Objects.Teacher;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import utils.SQLQueries;
 
 public class DatabaseHelper {
@@ -62,7 +66,6 @@ public class DatabaseHelper {
             JSONArray jsonArray = new JSONArray(response);
             
             JSONObject userInfo = jsonArray.getJSONObject(0);
-            System.out.println(userInfo);
             String storedPassword = userInfo.getString("password");
             //if password matches
             if (storedPassword.equals(password)) {
@@ -82,7 +85,7 @@ public class DatabaseHelper {
             JSONArray jsonArray = new JSONArray(response);
             
             JSONObject userInfo = jsonArray.getJSONObject(0);
-            String storedPassword = userInfo.getString("Password");
+            String storedPassword = userInfo.getString("password");
             //if password matches
             if (storedPassword.equals(password)) {
                 // successfull login
@@ -101,6 +104,34 @@ public class DatabaseHelper {
             return 0;
         }
     }
+    public static String readFile() {
+        // Create a file chooser
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select a text file");
+
+        // Open the file chooser dialog
+        int userSelection = fileChooser.showOpenDialog(null);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            // Check if the selected file is a .txt file
+            if (selectedFile.getName().endsWith(".txt")) {
+                try {
+                    // Read the file content into a string
+                    return new String(Files.readAllBytes(Paths.get(selectedFile.getAbsolutePath())));
+                } catch (IOException e) {
+                    System.err.println("Error reading the file: " + e.getMessage());
+                }
+            } else {
+                System.err.println("Please select a valid .txt file.");
+            }
+        } else {
+            System.out.println("File selection canceled.");
+        }
+        return null; // Return null if the operation fails or is canceled
+    }
+
     
     public static List<String> getStudentNames() {
         

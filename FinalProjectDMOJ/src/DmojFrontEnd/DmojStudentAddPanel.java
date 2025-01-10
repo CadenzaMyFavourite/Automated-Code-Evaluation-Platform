@@ -4,7 +4,6 @@
  */
 package DmojFrontEnd;
 
-import Objects.Student;
 import DmojBackEnd.DatabaseHelper;
 import utils.CardSwitcher;
 
@@ -12,27 +11,17 @@ import utils.CardSwitcher;
  *
  * @author HP User
  */
-public class DmojResponsePanel extends javax.swing.JPanel {
-    public static final String CARD_NAME = "respose";
+public class DmojStudentAddPanel extends javax.swing.JPanel {
+    public static final String CARD_NAME = "studentAdd";
     CardSwitcher switcher = null;
     DatabaseHelper d;
-    private static Student s;
-
-    public static Student getS() {
-        return s;
-    }
-    
     /**
-     * Creates new form DmojReponsePanel
+     * Creates new form DmojStudentAddPanel
      */
-    public DmojResponsePanel(CardSwitcher p,DatabaseHelper d) {
-        initComponents();
-        switcher=p;
+    public DmojStudentAddPanel(CardSwitcher c, DatabaseHelper d) {
+        this.switcher=c;
         this.d=d;
-    }
-
-    public static void setS(Student stu) {
-        s = stu;
+        initComponents();
     }
 
     /**
@@ -58,21 +47,22 @@ public class DmojResponsePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(607, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addContainerGap(578, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(337, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        switcher.switchToCard(DmojStudentAddPanel.CARD_NAME);
+        System.out.println(d.readFile());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
