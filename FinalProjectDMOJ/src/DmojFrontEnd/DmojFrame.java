@@ -37,6 +37,7 @@ public class DmojFrame extends javax.swing.JFrame implements CardSwitcher {
         cardPanel.add(new DmojTeacherListPanel(this,d),DmojTeacherListPanel.CARD_NAME);
         cardPanel.add(new DmojTeacherMenu(this,d),DmojTeacherMenu.CARD_NAME);
         cardPanel.add(new DmojTeacherViewPanel(this,d),DmojTeacherViewPanel.CARD_NAME);
+        cardPanel.add(new DmojStudentAddPanel(this,d),DmojStudentAddPanel.CARD_NAME);
         
     }
     /**
