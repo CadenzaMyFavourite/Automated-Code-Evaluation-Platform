@@ -123,6 +123,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         Student stu = new Student (username, password);
         System.out.println(d.userExists(username));
         if (d.userExists(username)==1){
+            System.out.println("hi");
             if (d.loginUser(username, password) == 1) {
                 DmojResponsePanel.setS(stu);
             }

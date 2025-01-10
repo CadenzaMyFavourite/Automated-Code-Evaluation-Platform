@@ -161,4 +161,22 @@ public class DatabaseHelper {
         }
         return responses;
     }
+    public List<String> getQuestions(){
+        String query = "SELECT Text FROM dmojQuestion;";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        List<String> questions = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject questionInfo = jsonArray.getJSONObject(i);
+            String s=questionInfo.getString("Text");
+            
+            
+            questions.add(s);
+        }
+        return questions;
+    }
+    public void addResponse(int studentID, int questionID, String response){
+        String query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',null);";
+        sendSQLQuery(query);
+    }
 }

@@ -39,6 +39,7 @@ public class DmojFrame extends javax.swing.JFrame implements CardSwitcher {
         cardPanel.add(new DmojTeacherViewPanel(this,d),DmojTeacherViewPanel.CARD_NAME);
         cardPanel.add(new DmojStudentListPanel(this,d),DmojStudentListPanel.CARD_NAME);
         cardPanel.add(new DmojStudentScorePanel(this,d),DmojStudentScorePanel.CARD_NAME);
+        cardPanel.add(new DmojStudentAddPanel(this,d),DmojStudentAddPanel.CARD_NAME);
     }
     /**
      * This method is called from within the constructor to initialize the form.

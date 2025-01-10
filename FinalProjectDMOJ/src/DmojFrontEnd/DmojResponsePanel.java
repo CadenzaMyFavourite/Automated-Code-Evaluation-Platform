@@ -13,7 +13,7 @@ import utils.CardSwitcher;
  * @author HP User
  */
 public class DmojResponsePanel extends javax.swing.JPanel {
-    public static final String CARD_NAME = "respose";
+    public static final String CARD_NAME = "response123";
     CardSwitcher switcher = null;
     DatabaseHelper d;
     private static Student s;
