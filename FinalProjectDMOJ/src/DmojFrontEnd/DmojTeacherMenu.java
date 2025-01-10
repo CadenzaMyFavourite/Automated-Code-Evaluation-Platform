@@ -37,8 +37,18 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
         viewButton = new javax.swing.JButton();
 
         addButton.setText("add questions");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         viewButton.setText("view questions");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,6 +71,14 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
                 .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+       switcher.switchToCard(DmojTeacherAddPanel.CARD_NAME);
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        switcher.switchToCard(DmojTeacherViewPanel.CARD_NAME);
+    }//GEN-LAST:event_viewButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
