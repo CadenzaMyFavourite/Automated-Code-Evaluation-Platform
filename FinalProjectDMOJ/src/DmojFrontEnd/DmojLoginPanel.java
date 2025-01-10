@@ -124,7 +124,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
             switcher.switchToCard(DmojResponsePanel.CARD_NAME);
         }
         else if(d.userExists(username)==2){
-            
+            switcher.switchToCard(DmojTeacherMenu.CARD_NAME);
         }
         else{
             
