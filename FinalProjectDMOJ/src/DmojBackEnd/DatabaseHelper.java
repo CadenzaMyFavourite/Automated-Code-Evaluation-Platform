@@ -4,6 +4,7 @@
  */
 package DmojBackEnd;
 
+import Objects.Response;
 import java.security.NoSuchAlgorithmException;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,6 +18,7 @@ import static utils.SQLQueries.sendSQLQuery;
 import Objects.Student;
 import Objects.Teacher;
 import java.util.ArrayList;
+import java.util.List;
 import utils.SQLQueries;
 
 public class DatabaseHelper {
@@ -100,4 +102,32 @@ public class DatabaseHelper {
         }
     }
     
+    public static List<String> getStudentNames() {
+        
+        String query = "SELECT Username FROM dmojStudent;";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        List<String> students = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject userInfo = jsonArray.getJSONObject(i);
+            String studentName = userInfo.getString("Username");
+            students.add(studentName);
+        }
+        return students;
+    }
+    
+    public static List<Response> getResponse(String username) {
+        String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = " + username + ";";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        List<Response> responses = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject userInfo = jsonArray.getJSONObject(i);
+            int questionID = userInfo.getInt("QuestionID");
+            int grade = userInfo.getInt("Grade");
+            Response r = new Response(questionID, grade);
+            responses.add(r);
+        }
+        return responses;
+    }
 }

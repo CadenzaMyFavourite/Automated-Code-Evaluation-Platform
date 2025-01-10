@@ -5,24 +5,37 @@
 package DmojFrontEnd;
 
 import DmojBackEnd.DatabaseHelper;
+import Objects.Student;
 import utils.CardSwitcher;
 
 /**
  *
  * @author HP User
  */
-public class DmojTeacherListPanel extends javax.swing.JPanel {
+public class DmojStudentPanel extends javax.swing.JPanel {
     public static final String CARD_NAME = "list";
     DatabaseHelper d;
     CardSwitcher switcher = null;
+    private static String username;
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        DmojStudentPanel.username = username;
+    }
+    
     /**
      * Creates new form DmojTeacherListPanel
      */
-    public DmojTeacherListPanel(CardSwitcher p,DatabaseHelper d) {
+    public DmojStudentPanel(CardSwitcher p,DatabaseHelper d) {
         initComponents();
         switcher=p;
         this.d=d;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
