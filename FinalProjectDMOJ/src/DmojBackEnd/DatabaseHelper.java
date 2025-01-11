@@ -179,4 +179,14 @@ public class DatabaseHelper {
         String query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',null);";
         sendSQLQuery(query);
     }
+    public int getStudentID(String name, String password){
+        String query="SELECT StudentID FROM dmojStudent WHERE username = '"+name+"' AND password = '"+password+"';)";
+        String response=sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        JSONObject j = jsonArray.getJSONObject(0);
+        int id=j.getInt("StudentID");
+        System.out.println(id);
+        return id;
+    }
+   
 }

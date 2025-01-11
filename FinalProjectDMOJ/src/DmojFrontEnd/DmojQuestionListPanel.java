@@ -5,6 +5,7 @@
 package DmojFrontEnd;
 
 import DmojBackEnd.DatabaseHelper;
+import Objects.Student;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addComponentListener;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -27,6 +28,7 @@ public class DmojQuestionListPanel extends JPanel{
     public static final String CARD_NAME = "studentList";
     private DatabaseHelper d;
     private CardSwitcher s;
+    public static Student stu;
     
     public DmojQuestionListPanel(CardSwitcher s, DatabaseHelper d) {
         this.s = s;
@@ -54,12 +56,13 @@ public class DmojQuestionListPanel extends JPanel{
         // Add column headers
         gbc.gridy = 0;
         gbc.gridx = 0;
-        mainPanel.add(new JLabel("Student Username"), gbc);
+        mainPanel.add(new JLabel("Questions"), gbc);
         gbc.gridx = 1;
-        mainPanel.add(new JLabel("View Scores"), gbc);
+        //mainPanel.add(new JLabel("Answer"), gbc);
 
         // Add student names and buttons
         for (int i = 0; i < studentNames.size(); i++) {
+            final int questionId = i + 1;
             String studentName = studentNames.get(i);
 
             // Add student name label
@@ -72,8 +75,10 @@ public class DmojQuestionListPanel extends JPanel{
             detailsButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    DmojStudentPanel.setUsername(studentName);
-                    s.switchToCard(DmojStudentPanel.CARD_NAME);
+                    
+                    DmojStudentAddPanel.questionID=questionId+1;
+                    
+                    s.switchToCard(DmojStudentAddPanel.CARD_NAME);
                 }
             });
             gbc.gridx = 1;
