@@ -94,6 +94,8 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         System.out.println(studentID);
+        System.out.println(questionID);
+        d.addResponse(studentID, questionID, code);
     }//GEN-LAST:event_submitButtonActionPerformed
 
 

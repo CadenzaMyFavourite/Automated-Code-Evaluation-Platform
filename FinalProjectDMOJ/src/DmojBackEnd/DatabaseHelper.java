@@ -34,7 +34,7 @@ public class DatabaseHelper {
         
         String response = sendSQLQuery(query);
         
-        System.out.println(response);
+        
         if (!(response.equals("[]"))) {
             return 1;  
         }
@@ -176,8 +176,17 @@ public class DatabaseHelper {
         return questions;
     }
     public void addResponse(int studentID, int questionID, String response){
-        String query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',null);";
-        sendSQLQuery(query);
+        String query="SELECT * FROM dmojResponse WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
+        String result = sendSQLQuery(query);
+        if (result.equals("[]")) {
+            query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',0);";
+            sendSQLQuery(query);  
+        }
+        else{
+            query="UPDATE dmojResponse SET CODE = '"+response+"' WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
+            sendSQLQuery(query);
+        }
+        
     }
     public int getStudentID(String name, String password){
         String query="SELECT StudentID FROM dmojStudent WHERE username = '"+name+"' AND password = '"+password+"';)";

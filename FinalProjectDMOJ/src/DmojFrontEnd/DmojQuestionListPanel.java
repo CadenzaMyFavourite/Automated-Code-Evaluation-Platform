@@ -62,7 +62,7 @@ public class DmojQuestionListPanel extends JPanel{
 
         // Add student names and buttons
         for (int i = 0; i < studentNames.size(); i++) {
-            final int questionId = i + 1;
+            int questionId = i ;
             String studentName = studentNames.get(i);
 
             // Add student name label
