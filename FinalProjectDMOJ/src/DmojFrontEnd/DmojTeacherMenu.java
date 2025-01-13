@@ -77,7 +77,7 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_studentButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        switcher.switchToCard(DmojTeacherViewPanel.CARD_NAME);
+        switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
     }//GEN-LAST:event_viewButtonActionPerformed
 
 

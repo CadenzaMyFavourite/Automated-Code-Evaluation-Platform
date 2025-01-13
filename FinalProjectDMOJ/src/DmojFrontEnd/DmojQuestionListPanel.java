@@ -25,7 +25,7 @@ import utils.CardSwitcher;
  * @author HP User
  */
 public class DmojQuestionListPanel extends JPanel{
-    public static final String CARD_NAME = "studentList";
+    public static final String CARD_NAME = "questionList";
     private DatabaseHelper d;
     private CardSwitcher s;
     public static Student stu;
