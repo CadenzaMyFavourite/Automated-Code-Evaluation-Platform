@@ -6,6 +6,7 @@ package DmojFrontEnd;
 
 import DmojBackEnd.DatabaseHelper;
 import Objects.Student;
+import javax.swing.JOptionPane;
 import utils.CardSwitcher;
 
 /**
@@ -93,9 +94,18 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_uploadButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        System.out.println(studentID);
-        System.out.println(questionID);
-        d.addResponse(studentID, questionID, code);
+        if(jTextArea1.getText().equals("")==false){
+            System.out.println(studentID);
+            System.out.println(questionID);
+            System.out.println(code);
+            code=jTextArea1.getText();
+            d.addResponse(studentID, questionID, code);
+            switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Enter Something", "Error",  JOptionPane.INFORMATION_MESSAGE);
+
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
 
