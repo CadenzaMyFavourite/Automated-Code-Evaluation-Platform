@@ -6,6 +6,7 @@ package DmojFrontEnd;
 
 import Objects.Student;
 import DmojBackEnd.DatabaseHelper;
+import javax.swing.JOptionPane;
 import utils.CardSwitcher;
 
 /**
@@ -46,7 +47,11 @@ public class DmojLoginPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Username");
 
+        nameTextField.setPreferredSize(new java.awt.Dimension(164, 30));
+
         jLabel2.setText("Password");
+
+        passwordTextField.setPreferredSize(new java.awt.Dimension(164, 30));
 
         jButton1.setText("login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,26 +116,40 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RegisterButton)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
-        Student stu = new Student (username, password);
+        
+        System.out.println(d.userExists(username));
         if (d.userExists(username)==1){
+            System.out.println("hi");
             if (d.loginUser(username, password) == 1) {
+                Student stu = new Student (username, password);
+                stu.setId(d.getStudentID(username,password));
+                DmojStudentAddPanel.studentID=d.getStudentID(username,password);
                 DmojResponsePanel.setS(stu);
-                System.out.println(DmojResponsePanel.s.getId());
+                switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
             }
-            switcher.switchToCard(DmojResponsePanel.CARD_NAME);
+            else{
+                JOptionPane.showMessageDialog(null, "Wrong Password", "Error",  JOptionPane.INFORMATION_MESSAGE);
+            }
+            
         }
         else if(d.userExists(username)==2){
-            switcher.switchToCard(DmojTeacherMenu.CARD_NAME);
+            if (d.loginUser(username, password) == 2) {
+                switcher.switchToCard(DmojTeacherMenu.CARD_NAME);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Wrong Password", "Error",  JOptionPane.INFORMATION_MESSAGE);
+            }
+            
         }
         else{
-            
+            JOptionPane.showMessageDialog(null, "User Does Not Exist", "Error",  JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

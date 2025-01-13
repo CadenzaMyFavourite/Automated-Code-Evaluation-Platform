@@ -9,10 +9,11 @@ package Objects;
  * @author readingsdoc.
  */
 public class User {
-    protected String id;
+    protected int id;
+    String username;
     protected String password;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -20,7 +21,7 @@ public class User {
         return password;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -20,7 +20,7 @@
               <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="viewButton" pref="181" max="32767" attributes="0"/>
-                  <Component id="addButton" max="32767" attributes="0"/>
+                  <Component id="studentButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="340" max="32767" attributes="0"/>
           </Group>
@@ -30,7 +30,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-              <Component id="addButton" min="-2" pref="68" max="-2" attributes="0"/>
+              <Component id="studentButton" min="-2" pref="68" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Component id="viewButton" min="-2" pref="71" max="-2" attributes="0"/>
               <EmptySpace pref="183" max="32767" attributes="0"/>
@@ -39,12 +39,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="addButton">
+    <Component class="javax.swing.JButton" name="studentButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="add questions"/>
+        <Property name="text" type="java.lang.String" value="view students"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="viewButton">

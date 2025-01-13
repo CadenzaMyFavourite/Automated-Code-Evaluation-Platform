@@ -10,8 +10,8 @@ package Objects;
  */
 public class Student extends User {
 
-    public Student(String id, String password) {
-        this.id = id;
+    public Student(String username, String password) {
+        this.username = username;
         this.password = password;
     }
     
