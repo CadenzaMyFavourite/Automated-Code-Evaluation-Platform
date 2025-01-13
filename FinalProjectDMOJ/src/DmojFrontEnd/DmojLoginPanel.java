@@ -129,7 +129,6 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 Student stu = new Student (username, password);
                 stu.setId(d.getStudentID(username,password));
                 DmojStudentAddPanel.studentID=d.getStudentID(username,password);
-                DmojResponsePanel.setS(stu);
                 switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
             }
             else{
