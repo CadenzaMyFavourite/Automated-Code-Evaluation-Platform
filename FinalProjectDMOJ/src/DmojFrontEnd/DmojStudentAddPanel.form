@@ -22,7 +22,9 @@
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="uploadButton" min="-2" pref="167" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="BackButton" min="-2" pref="131" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="submitButton" min="-2" pref="162" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -39,6 +41,7 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="submitButton" pref="69" max="32767" attributes="0"/>
                   <Component id="uploadButton" max="32767" attributes="0"/>
+                  <Component id="BackButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
           </Group>
@@ -77,5 +80,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="BackButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Go Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

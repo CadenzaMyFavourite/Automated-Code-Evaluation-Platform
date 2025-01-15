@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 
 import Objects.Student;
 import Objects.Teacher;
+import Objects.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -59,7 +60,7 @@ public class DatabaseHelper {
         return 0;
     }
     public int loginUser(String name, String password) {
-        //only doing this if the user exists
+        //only doing this if the user exists 
         if (userExists(name)==1) {
             // check if username and password match
             String query = "SELECT password FROM dmojStudent WHERE Username = '" + name + "';";
@@ -208,8 +209,8 @@ public class DatabaseHelper {
         System.out.print(questionInfo);
         String questionText = questionInfo.getString("Text");
         String testCase = questionInfo.getString("TestCase");
-        
-        Question q = new Question(questionText, testCase);
+        List<TestCase> testCases = QuestionParser.parseTestCase(testCase);
+        Question q = new Question(questionText, testCases);
         return q;
     }
     

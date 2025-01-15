@@ -33,5 +33,9 @@ public class TestCase {
         this.output = output;
     }
     
-    
+    @Override
+    public String toString() {
+        String result = input + ";" + output;
+        return result;
+    }
 }
