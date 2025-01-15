@@ -26,15 +26,18 @@ import javax.swing.JFileChooser;
 import utils.SQLQueries;
 
 public class DatabaseHelper {
-    //return 1 for student, 2 for teacher 0, for not exsit
+    //author: Zhu Zhu man
+    /**
+     * Checks if a user exist in the teacher table and student table
+     * returns an integer for further checking
+     * @param name the input of username
+     * @return  1 for student, 2 for teacher 0 for not exist
+     */
     public int userExists(String name){
-        //Selecting name if the user exists from the table
-        
+        //Selecting all students with input name from the student table
         String query = "SELECT * FROM dmojStudent WHERE Username = '" + name + "';";
-        
         String response = sendSQLQuery(query);
-        
-        
+        //return 1 if result is not empty, that user already exist in student table
         if (!(response.equals("[]"))) {
             return 1;  
         }
@@ -46,25 +49,38 @@ public class DatabaseHelper {
         
         return 0;
     }
+    /**
+     * send sql queries to databases
+     * will not add a new user if the user already exist
+     * @param name the username of user
+     * @param password the password of user
+     * @return 1 for user exists, 0 for successfully added
+     */
+    //Zhu Zhu man
     public int registerUser(String name, String password)  {
-        //if user exists return 1
-        
+        //if the user already exist, return 1
         if(userExists(name)==1 || userExists(name)==2){
            return 1; 
         }
+        //add student to the database
         String query="INSERT into dmojStudent VALUES(NULL,'"+name+"','"+password+"');";
-        System.out.println("hi");
         sendSQLQuery(query);
         return 0;
     }
+    /**
+     * this code checks if the corresponding name and password exists in a database
+     * @param name the username if users input
+     * @param password the password of a user's input
+     * @return 1 for a student login, 2 for a teacher login, 3 for wrong password, 0 for not exsisting user
+     */
+    //Zhu Zhu man
     public int loginUser(String name, String password) {
-        //only doing this if the user exists
+        //first check if the user exists in studnet table
         if (userExists(name)==1) {
             // check if username and password match
             String query = "SELECT password FROM dmojStudent WHERE Username = '" + name + "';";
             String response = sendSQLQuery(query);
             JSONArray jsonArray = new JSONArray(response);
-            
             JSONObject userInfo = jsonArray.getJSONObject(0);
             String storedPassword = userInfo.getString("password");
             //if password matches
@@ -100,11 +116,16 @@ public class DatabaseHelper {
         }
         else{
             System.out.println("Error: User needs to register first.");
-            // return 1 if user does not exists
+            // return 0 if user does not exists
             return 0;
         }
     }
-    public static String readFile() {
+    /**
+     * allows the user to open a window to read texts from a txt file
+     * this one I copied from a website
+     */
+    //zhu zhu man
+    public String readFile() {
         // Create a file chooser
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select a text file");
@@ -161,40 +182,65 @@ public class DatabaseHelper {
         }
         return responses;
     }
+    /**
+     * this method gets all the text of questions stored in table
+     * @return a list of string that can be used in a panel for displaying
+     */
+    //Zhu Zhu man
     public List<String> getQuestions(){
+        //select all questions from databse
         String query = "SELECT Text FROM dmojQuestion;";
         String response = sendSQLQuery(query);
         JSONArray jsonArray = new JSONArray(response);
         List<String> questions = new ArrayList<>();
+        //repeat for any question
         for (int i = 0; i < jsonArray.length(); i++) {
+            //add the texts for each of it to the list
             JSONObject questionInfo = jsonArray.getJSONObject(i);
             String s=questionInfo.getString("Text");
-            
-            
             questions.add(s);
         }
         return questions;
     }
+    /**
+     * this method insert a new response into the response panel, or update it if the reponse already exist
+     * @param studentID student id of each student(a foreign key in the response table)
+     * @param questionID question id of each questions(a foreign key in the response table)
+     * @param response the text
+     */
     public void addResponse(int studentID, int questionID, String response){
+        //first check if the user has the question before(checkis if there is corresponding studentID/questionID)
         String query="SELECT * FROM dmojResponse WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
         String result = sendSQLQuery(query);
+        //if not
         if (result.equals("[]")) {
+            //add a new reponse to the table
             query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',0);";
             sendSQLQuery(query);  
         }
         else{
+            //if it exist, then only updates the text of reposne
             query="UPDATE dmojResponse SET CODE = '"+response+"' WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
             sendSQLQuery(query);
         }
         
     }
+    /**
+     * getting the userid by entering corresponding username and password(since no repeated users are allowed)
+     * @param name
+     * @param password
+     * @return the id of student from database
+     */
     public int getStudentID(String name, String password){
+        //checks the userID with the corresponding username and password
         String query="SELECT StudentID FROM dmojStudent WHERE username = '"+name+"' AND password = '"+password+"';)";
         String response=sendSQLQuery(query);
+        //get the only item
         JSONArray jsonArray = new JSONArray(response);
         JSONObject j = jsonArray.getJSONObject(0);
         int id=j.getInt("StudentID");
         System.out.println(id);
+        //return
         return id;
     }
    
