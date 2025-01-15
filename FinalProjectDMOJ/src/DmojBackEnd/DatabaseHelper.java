@@ -53,22 +53,24 @@ public class DatabaseHelper {
         return 0;
     }
     /**
-     * send sql queries to databases
-     * will not add a new user if the user already exist
-     * @param name the username of user
-     * @param password the password of user
-     * @return 1 for user exists, 0 for successfully added
+     * send sql queries to databases that adds a student
+     * @param name the username of student
+     * @param password the password of student
      */
     //Zhu Zhu man
-    public int registerUser(String name, String password)  {
-        //if the user already exist, return 1
-        if(userExists(name)==1 || userExists(name)==2){
-           return 1; 
-        }
-        //add student to the database
+    public void registerStudent(String name, String password)  {
         String query="INSERT into dmojStudent VALUES(NULL,'"+name+"','"+password+"');";
         sendSQLQuery(query);
-        return 0;
+    }
+    /**
+     * send sql queries to databases that adds a teacher
+     * @param name the username of teacher
+     * @param password the password of teacher
+     */
+    //Zhu Zhu man
+    public void registerTeacher(String name, String password)  {
+        String query="INSERT into dmojTeacher VALUES(NULL,'"+name+"','"+password+"');";
+        sendSQLQuery(query);
     }
     /**
      * this code checks if the corresponding name and password exists in a database
