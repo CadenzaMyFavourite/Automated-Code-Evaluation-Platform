@@ -121,12 +121,19 @@ public class DmojTeacherDetailsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        jTextArea1.setText(q.getTestCases());
+        String result = "";
+        for (int i = 0; i < q.getTestCases().size(); i ++ ) {
+            result = result + "{" + q.getTestCases().get(i).toString() + "}";
+        }
+        jTextArea1.setText(result);
         jTextArea2.setText(q.getQuestionText());
     }//GEN-LAST:event_formComponentShown
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        d.changeQuestion(question, testCase);
+        String question = jTextArea2.getText();
+        String testCase = jTextArea1.getText();
+        
+        d.changeQuestion(q, question, testCase);
     }//GEN-LAST:event_submitButtonActionPerformed
 
 

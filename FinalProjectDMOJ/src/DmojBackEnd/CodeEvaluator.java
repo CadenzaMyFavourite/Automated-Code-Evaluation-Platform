@@ -15,37 +15,41 @@ import java.util.*;
 
 class CodeEvaluator {
 
-    public static int evaluate(String studentCode, List<TestCase> testCases) throws IOException, InterruptedException {
-        // Compile the student's code
-//        Process compileProcess = new ProcessBuilder("javac", "studentAnswr.txt").start();
-        Process compileProcess = Runtime.getRuntime().exec("javac " + studentCode);
+    public static int evaluate(String studentCodeFilePath, List<TestCase> testCases) throws IOException, InterruptedException {
+         //Write the student code to a file
+        String filePath = "StudentCode.java";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+        writer.write(studentCodeFilePath);
+        writer.close();
+        Process compileProcess = Runtime.getRuntime().exec("javac " + filePath);
         compileProcess.waitFor();
+        // Compile the student's code
+        
         if (compileProcess.waitFor() != 0) {
-            System.out.println("Compilation Error. Please check the student's code.");
+            // Capture compilation errors
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(compileProcess.getErrorStream()));
+            String errorLine;
+            while ((errorLine = errorReader.readLine()) != null) {
+                System.err.println("Compilation Error: " + errorLine);
+            }
+            errorReader.close();
             return -1;
         }
 
-//        // Extract the class name from the file path
-//        String className = new File("studentAnswr.txt").getName().replace(".java", "");
-
-
-        // Execute the student's program and test each case
         int passed = 0;
-        for (TestCase testCase : testCases) {
-            String[] inputs = testCase.getInput().split(",");
-            String expectedOutput = testCase.getOutput();
 
-            // Run the student's compiled code
+        // Execute the student's program for each test case
+        for (TestCase testCase : testCases) {
             Process runProcess = Runtime.getRuntime().exec("java StudentCode");
-                    
+            // Pass inputs
             BufferedWriter processInput = new BufferedWriter(new OutputStreamWriter(runProcess.getOutputStream()));
-            for (String input : inputs) {
+            for (String input : testCase.getInput().split(",")) {
                 processInput.write(input.trim());
                 processInput.newLine();
             }
             processInput.close();
 
-            // Capture the output
+            // Capture output
             BufferedReader processOutput = new BufferedReader(new InputStreamReader(runProcess.getInputStream()));
             StringBuilder actualOutput = new StringBuilder();
             String line;
@@ -53,8 +57,13 @@ class CodeEvaluator {
                 actualOutput.append(line.trim());
             }
 
-            // Compare actual output with expected output
-            if (actualOutput.toString().equals(expectedOutput)) {
+            // Debugging logs
+            System.out.println("Inputs: " + testCase.getInput());
+            System.out.println("Expected: " + testCase.getOutput());
+            System.out.println("Actual: " + actualOutput);
+
+            // Compare outputs
+            if (actualOutput.toString().equals(testCase.getOutput())) {
                 passed++;
             }
         }
@@ -62,3 +71,5 @@ class CodeEvaluator {
         return passed;
     }
 }
+
+

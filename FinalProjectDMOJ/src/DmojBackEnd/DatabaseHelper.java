@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import utils.SQLQueries;
+import static utils.SQLQueries.sendSQLQuery;
 
 public class DatabaseHelper {
     //author: Zhu Zhu man
@@ -249,7 +250,6 @@ public class DatabaseHelper {
         String response = sendSQLQuery(query);
         JSONArray jsonArray = new JSONArray(response);
         JSONObject questionInfo = jsonArray.getJSONObject(0);
-        System.out.print(questionInfo);
         String questionText = questionInfo.getString("Text");
         String testCase = questionInfo.getString("TestCase");
         List<TestCase> testCases = QuestionParser.parseTestCase(testCase);
@@ -257,5 +257,14 @@ public class DatabaseHelper {
         return q;
     }
     
-    public void changeQuestion(String question, String testCase)
+    public void changeQuestion(Question q, String question, String testCase) {
+        String query = "SELECT QuestionID FROM dmojQuestion WHERE Text = '" + q.getQuestionText() + "';";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        JSONObject questionInfo = jsonArray.getJSONObject(0);
+        int questionID = questionInfo.getInt("QuestionID");
+        query = "UPDATE dmojQuestion SET Text = '" + question + "', TestCase = '" + testCase + "' WHERE QuestionID = " + questionID + ";";
+        response = sendSQLQuery(query);
+        System.out.println("Works!");
+    }
 }
