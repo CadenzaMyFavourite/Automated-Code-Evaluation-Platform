@@ -19,6 +19,8 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     CardSwitcher switcher = null;
     /**
      * Creates new form DmojLoginPanel
+     * @param p
+     * @param d
      */
     public DmojLoginPanel(CardSwitcher p,DatabaseHelper d) {
         initComponents();

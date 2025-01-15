@@ -75,7 +75,7 @@ public class DatabaseHelper {
      */
     //Zhu Zhu man
     public int loginUser(String name, String password) {
-        //first check if the user exists in studnet table
+        //only doing this if the user exists 
         if (userExists(name)==1) {
             // check if username and password match
             String query = "SELECT password FROM dmojStudent WHERE Username = '" + name + "';";
