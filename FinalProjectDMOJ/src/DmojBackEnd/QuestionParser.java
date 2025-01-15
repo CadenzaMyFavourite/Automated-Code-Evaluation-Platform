@@ -8,6 +8,7 @@ package DmojBackEnd;
  *
  * @author zjiaq
  */
+import Objects.Question;
 import java.io.*;
 import java.util.*;
 

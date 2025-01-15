@@ -4,6 +4,7 @@
  */
 package DmojBackEnd;
 
+import Objects.Question;
 import Objects.Response;
 import java.security.NoSuchAlgorithmException;
 import org.json.JSONArray;
@@ -161,6 +162,7 @@ public class DatabaseHelper {
         }
         return responses;
     }
+    
     public List<String> getQuestions(){
         String query = "SELECT Text FROM dmojQuestion;";
         String response = sendSQLQuery(query);
@@ -175,6 +177,7 @@ public class DatabaseHelper {
         }
         return questions;
     }
+    
     public void addResponse(int studentID, int questionID, String response){
         String query="SELECT * FROM dmojResponse WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
         String result = sendSQLQuery(query);
@@ -194,8 +197,21 @@ public class DatabaseHelper {
         JSONArray jsonArray = new JSONArray(response);
         JSONObject j = jsonArray.getJSONObject(0);
         int id=j.getInt("StudentID");
-        System.out.println(id);
         return id;
     }
-   
+    
+    public Question getQT(String text){
+        String query = "SELECT TestCase, Text FROM dmojQuestion WHERE Text = '" + text + "';";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        JSONObject questionInfo = jsonArray.getJSONObject(0);
+        System.out.print(questionInfo);
+        String questionText = questionInfo.getString("Text");
+        String testCase = questionInfo.getString("TestCase");
+        
+        Question q = new Question(questionText, testCase);
+        return q;
+    }
+    
+    public void changeQuestion(String question, String testCase)
 }

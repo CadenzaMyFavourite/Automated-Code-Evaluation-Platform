@@ -10,7 +10,7 @@ package Objects;
  */
 public class User {
     protected int id;
-    String username;
+    protected String username;
     protected String password;
 
     public int getId() {

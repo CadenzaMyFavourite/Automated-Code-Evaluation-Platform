@@ -8,6 +8,7 @@ package DmojBackEnd;
  *
  * @author zjiaq
  */
+import Objects.Question;
 import java.io.*;
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class ExaminationPlatform {
             // Display questions
             System.out.println("Available Questions:");
             for (int i = 0; i < questions.size(); i++) {
-                System.out.println((i + 1) + ". " + questions.get(i).questionText);
+                System.out.println((i + 1) + ". " + questions.get(i).getQuestionText());
             }
 
             // Select a question to answer
@@ -36,7 +37,7 @@ public class ExaminationPlatform {
             }
 
             Question selectedQuestion = questions.get(questionNumber - 1);
-            System.out.println("Selected Question: " + selectedQuestion.questionText);
+            System.out.println("Selected Question: " + selectedQuestion.getQuestionText());
             System.out.println("Input: " + selectedQuestion.input);
             System.out.println("Expected Output: " + selectedQuestion.expectedOutput);
 
