@@ -269,4 +269,9 @@ public class DatabaseHelper {
         response = sendSQLQuery(query);
         System.out.println("Works!");
     }
+    
+    public void addQuestion(String questionText, String testCase) {
+        String query = "INSERT INTO dmojQuestion (QuestionID, Text, TestCase) " + "VALUES (null, '" + questionText + "', '" + testCase + "');";
+        String response = sendSQLQuery(query);
+    }
 }

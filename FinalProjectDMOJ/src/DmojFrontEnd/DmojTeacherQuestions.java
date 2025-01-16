@@ -24,6 +24,8 @@ import utils.CardSwitcher;
  *
  * @author readingsdoc.
  */
+
+
 public class DmojTeacherQuestions extends JPanel{
     public static final String CARD_NAME = "questionList";
     private DatabaseHelper d;
@@ -86,10 +88,22 @@ public class DmojTeacherQuestions extends JPanel{
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 s.switchToCard(DmojTeacherAddPanel.CARD_NAME);
             }
         });
+        
+        JButton backButton = new JButton("Back");
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                s.switchToCard(DmojTeacherQuestions.CARD_NAME);
+            }
+        });
+        
+        JPanel bottomPanel = new JPanel(); 
+        bottomPanel.add(addButton);
+        bottomPanel.add(backButton);
+        add(bottomPanel, BorderLayout.SOUTH);
         
 
         // Wrap the main panel in a scroll pane
