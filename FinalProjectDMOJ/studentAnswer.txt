@@ -74,37 +74,3 @@ public class StudentCode  {
         return -1;
     }
 }
-//    public static int minKnightMoves(int x, int y, int endX, int endY, boolean[][] visited) {
-//        
-//        if (x == endX && y == endY) {
-//            return 0;
-//        }
-//
-//        // Mark the current position as visited
-//        visited[x-1][y-1] = true;
-//        
-//
-//        int minMoves = Integer.MAX_VALUE;
-//
-//        // Try all possible knight moves
-//        for (int[] m : moves) {
-//            int newX = x + m[0];
-//            int newY = y + m[1];
-//
-//            // Check if the new position is within bounds and not visited
-//            if (newX >= 1 && newX <= 8 && newY >= 1 && newY <= 8 && !visited[newY-1][newX-1]) {
-//                // Recursive call and calculate the minimum moves
-//                int movesN = 1 + minKnightMoves(newX, newY, endX, endY, visited);
-//                minMoves = Math.min(minMoves, movesN);
-//                return minMoves;
-//            }
-//        }
-//
-//        // Unmark the current position before returning (backtracking)
-//        visited[x-1][y-1] = false;
-//
-//        
-//        return -1;
-//        
-//    }
-//}

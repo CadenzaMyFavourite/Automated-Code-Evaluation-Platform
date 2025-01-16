@@ -28,6 +28,28 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
         this.d=d;
         initComponents();
     }
+    private void saveToFile(String code) {
+    String filePath = "student_code.txt"; // Specify the file path
+    String content = code;
+
+        try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
+            writer.write(content);
+            writer.close();
+        } catch (java.io.IOException e) { 
+            System.out.println("erro");
+        }
+    }
+    private void deleteEnter(String code) {
+    String filePath = "student_code.txt"; // Specify the file path
+    String content = code;
+
+        try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
+            writer.write(content);
+            writer.close();
+        } catch (java.io.IOException e) { 
+            System.out.println("erro");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,11 +130,15 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
         //if the textbox is not empty
         if(jTextArea1.getText().equals("")==false){
             //read all inputs and update that student's reponse
-            System.out.println(studentID);
-            System.out.println(questionID);
-            System.out.println(code);
+//            System.out.println(studentID);
+//            System.out.println(questionID);
             code=jTextArea1.getText();
+            System.out.println(code);
+            
+            code = jTextArea1.getText().replace("\n", "\\n");
+            saveToFile(code);
             d.addResponse(studentID, questionID, code);
+            
             //then go back to question list
             switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
         }
@@ -126,7 +152,7 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
     }//GEN-LAST:event_BackButtonActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
@@ -136,3 +162,4 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
 }
+    
