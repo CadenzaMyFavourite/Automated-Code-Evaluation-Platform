@@ -128,17 +128,26 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-       switcher.switchToCard(DmojLoginPanel.CARD_NAME);
+       //switch to login panel
+        switcher.switchToCard(DmojLoginPanel.CARD_NAME);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
+        //first check combobox to check which type of user are we selecting
         String user=jComboBox1.getSelectedItem().toString();
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
-        if(d.userExists(username)==1 || d.userExists(username)==2){
+        //output a message if any of inputs is 0
+        if(username.equals("")||password.equals("")){
+            JOptionPane.showMessageDialog(null, "Please ensure inputs are not empty", "Error",  JOptionPane.INFORMATION_MESSAGE);
+ 
+        }
+        //output a message if the user exist in student/teacher table
+        else if(d.userExists(username)==1 || d.userExists(username)==2){
             JOptionPane.showMessageDialog(null, "User already exists", "Error",  JOptionPane.INFORMATION_MESSAGE);
             
         }
+        //otherwise store them in table
         else if(user.equals("Student")){
            d.registerStudent(username, password);
            switcher.switchToCard(DmojLoginPanel.CARD_NAME);

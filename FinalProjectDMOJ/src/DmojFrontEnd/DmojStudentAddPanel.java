@@ -105,12 +105,15 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_uploadButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        //if the textbox is not empty
         if(jTextArea1.getText().equals("")==false){
+            //read all inputs and update that student's reponse
             System.out.println(studentID);
             System.out.println(questionID);
             System.out.println(code);
             code=jTextArea1.getText();
             d.addResponse(studentID, questionID, code);
+            //then go back to question list
             switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
         }
         else{

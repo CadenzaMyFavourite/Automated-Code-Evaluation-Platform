@@ -121,16 +121,23 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //read imputs from textbox
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
         
-        System.out.println(d.userExists(username));
-        if (d.userExists(username)==1){
-            System.out.println("hi");
+        if(username.equals("")||password.equals("")){
+            JOptionPane.showMessageDialog(null, "Please ensure inputs are not empty", "Error",  JOptionPane.INFORMATION_MESSAGE);
+ 
+        }
+        //if the user exist as a student
+        else if (d.userExists(username)==1){
+            //if the username is correct
             if (d.loginUser(username, password) == 1) {
+                //pass information to student's adding panel
                 Student stu = new Student (username, password);
                 stu.setId(d.getStudentID(username,password));
                 DmojStudentAddPanel.studentID=d.getStudentID(username,password);
+                //swich to panel with list of questions
                 switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
             }
             else{
@@ -138,6 +145,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
             }
             
         }
+        //if the user exist as a teacher
         else if(d.userExists(username)==2){
             if (d.loginUser(username, password) == 2) {
                 switcher.switchToCard(DmojTeacherMenu.CARD_NAME);
@@ -153,6 +161,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+        //switch to sign up panel
         switcher.switchToCard(DmojSignUpPanel.CARD_NAME);
     }//GEN-LAST:event_RegisterButtonActionPerformed
 

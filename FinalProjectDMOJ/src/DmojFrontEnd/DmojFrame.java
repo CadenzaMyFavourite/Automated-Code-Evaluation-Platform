@@ -29,6 +29,7 @@ public class DmojFrame extends javax.swing.JFrame implements CardSwitcher {
         switchToCard(DmojIntroPanel.CARD_NAME);
     }
     private void addPanels() {
+        //add all panels to cardlayour
         cardPanel.add(new DmojIntroPanel(this,d),DmojIntroPanel.CARD_NAME);
         cardPanel.add(new DmojLoginPanel(this,d),DmojLoginPanel.CARD_NAME);
         cardPanel.add(new DmojSignUpPanel(this,d),DmojSignUpPanel.CARD_NAME);

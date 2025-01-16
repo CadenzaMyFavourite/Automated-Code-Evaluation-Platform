@@ -25,7 +25,7 @@ import utils.CardSwitcher;
  * @author HP User
  */
 public class DmojQuestionListPanel extends JPanel{
-    public static final String CARD_NAME = "questionList";
+    public static final String CARD_NAME = "question";
     private DatabaseHelper d;
     private CardSwitcher s;
     public static Student stu;
@@ -77,7 +77,7 @@ public class DmojQuestionListPanel extends JPanel{
                 public void actionPerformed(ActionEvent e) {
                     
                     DmojStudentAddPanel.questionID=questionId+1;
-                    
+                    System.out.println(DmojStudentAddPanel.CARD_NAME);
                     s.switchToCard(DmojStudentAddPanel.CARD_NAME);
                 }
             });
