@@ -56,7 +56,8 @@ public class DmojStudentScorePanel extends JPanel{
 
         // Fetch the list of responses for the given username
         List<Response> responses = d.getResponse(username);
-        System.out.println(responses.size());
+        d.sortResponse(responses);
+
 
         // Set up the main panel with a grid layout for QuestionID and Grade
         JPanel mainPanel = new JPanel(new GridBagLayout());
