@@ -258,6 +258,16 @@ public class DatabaseHelper {
         Question q = new Question(questionText, testCases);
         return q;
     }
+    public List<TestCase> getQT(int questionID){
+        String query = "SELECT TestCase FROM dmojQuestion WHERE QuestionID = " + questionID + ";";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        JSONObject questionInfo = jsonArray.getJSONObject(0);
+        String testCase = questionInfo.getString("TestCase");
+        List<TestCase> testCases = QuestionParser.parseTestCase(testCase);
+  
+        return testCases;
+    }
     
     public void changeQuestion(Question q, String question, String testCase) {
         String query = "SELECT QuestionID FROM dmojQuestion WHERE Text = '" + q.getQuestionText() + "';";

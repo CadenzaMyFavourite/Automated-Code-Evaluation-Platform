@@ -12,10 +12,23 @@ import Objects.Question;
 import Objects.TestCase;
 import java.io.*;
 import java.util.*;
-import java.io.*;
-import java.util.*;
 
 public class ExaminationPlatform {
+    
+    
+    public String marks(String fileName, int questionID) throws FileNotFoundException, IOException, InterruptedException{
+        DatabaseHelper d = new DatabaseHelper();
+        StringBuilder studentCode = new StringBuilder();
+        try (BufferedReader codeReader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = codeReader.readLine()) != null) {
+                studentCode.append(line).append("\n");
+            }
+        }
+        String mark = CodeEvaluator.evaluate(studentCode.toString(), d.getQT(questionID)) +"/"+d.getQT(questionID).size();
+        return mark;
+    }
+    
     public static void main(String[] args) {
         try {
             // Parse questions from the file
@@ -74,4 +87,5 @@ public class ExaminationPlatform {
             e.printStackTrace();
         }
     }
+    
 }

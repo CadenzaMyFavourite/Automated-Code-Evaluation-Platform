@@ -5,7 +5,10 @@
 package DmojFrontEnd;
 
 import DmojBackEnd.DatabaseHelper;
-import Objects.Student;
+import DmojBackEnd.ExaminationPlatform;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import utils.CardSwitcher;
 
@@ -39,17 +42,7 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
             System.out.println("erro");
         }
     }
-    private void deleteEnter(String code) {
-    String filePath = "student_code.txt"; // Specify the file path
-    String content = code;
-
-        try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
-            writer.write(content);
-            writer.close();
-        } catch (java.io.IOException e) { 
-            System.out.println("erro");
-        }
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,9 +128,26 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
             code=jTextArea1.getText();
             System.out.println(code);
             
-            code = jTextArea1.getText().replace("\n", "\\n");
-            saveToFile(code);
+            code = jTextArea1.getText()
+            .replace("\n", "\\n") // Replace line breaks
+            .replace("\t", "\\t") // Replace tabs
+            .replace("'", "\\\\'") // Escape single quotes
+            .replace("\"", "\\\\");
+            
             d.addResponse(studentID, questionID, code);
+            code = jTextArea1.getText()
+            .replace("\\n", "\n") // Replace line breaks
+            .replace("\\t", "\t") // Replace tabs
+            .replace("\\\\'", "'") // Escape single quotes
+            .replace("\\\\", "\"");
+            saveToFile(code);
+            ExaminationPlatform exam = new ExaminationPlatform();
+            try {
+                System.out.println(exam.marks("student_code.txt",questionID));
+            } catch (IOException | InterruptedException ex) {
+                Logger.getLogger(DmojStudentAddPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             
             //then go back to question list
             switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
