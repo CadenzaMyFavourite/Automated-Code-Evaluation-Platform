@@ -173,8 +173,8 @@ public class DatabaseHelper {
         return students;
     }
     
-    public static List<Response> getResponse(String username) {
-        String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = " + username + ";";
+    public List<Response> getResponse(String username) {
+        String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = '" + username + "';";
         String response = sendSQLQuery(query);
         JSONArray jsonArray = new JSONArray(response);
         List<Response> responses = new ArrayList<>();

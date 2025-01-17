@@ -96,7 +96,7 @@ public class DmojTeacherQuestions extends JPanel{
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                s.switchToCard(DmojTeacherQuestions.CARD_NAME);
+                s.switchToCard(DmojTeacherMenu.CARD_NAME);
             }
         });
         

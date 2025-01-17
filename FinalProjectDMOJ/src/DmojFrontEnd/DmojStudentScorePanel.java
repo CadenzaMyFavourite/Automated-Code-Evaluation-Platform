@@ -51,10 +51,12 @@ public class DmojStudentScorePanel extends JPanel{
     private void setUpPanels() {
         removeAll(); // Clear any existing components
         setLayout(new BorderLayout());
+        System.out.println("Hello This works.");
 
 
         // Fetch the list of responses for the given username
-        List<Response> responses = DatabaseHelper.getResponse(username);
+        List<Response> responses = d.getResponse(username);
+        System.out.println(responses.size());
 
         // Set up the main panel with a grid layout for QuestionID and Grade
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -89,6 +91,10 @@ public class DmojStudentScorePanel extends JPanel{
 
         revalidate();
         repaint();
+    }
+    
+    private void formComponentShown(java.awt.event.ComponentEvent evt) { 
+        this.setUpPanels();
     }
     
 }
