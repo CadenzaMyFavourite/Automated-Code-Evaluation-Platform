@@ -173,8 +173,8 @@ public class DatabaseHelper {
         return students;
     }
     
-    public static List<Response> getResponse(String username) {
-        String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = " + username + ";";
+    public List<Response> getResponse(String username) {
+        String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = '" + username + "';";
         String response = sendSQLQuery(query);
         JSONArray jsonArray = new JSONArray(response);
         List<Response> responses = new ArrayList<>();
@@ -186,6 +186,17 @@ public class DatabaseHelper {
             responses.add(r);
         }
         return responses;
+    }
+    public void sortResponse(List<Response> responses){
+        for(int i=1;i<responses.size();i++){
+            Response currentResponse=responses.get(i);
+            int j=i-1;
+            while(j>=0&&responses.get(j).getQuestionID()>currentResponse.getQuestionID()){
+                responses.set(j+1,responses.get(j)); 
+                j--;
+            }
+             responses.set(j+1,currentResponse);
+        }
     }
     /**
      * this method gets all the text of questions stored in table
@@ -220,7 +231,7 @@ public class DatabaseHelper {
         //if not
         if (result.equals("[]")) {
             //add a new reponse to the table
-            query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',0);";
+            query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"','"+0+"');";
             sendSQLQuery(query);  
         }
         else{

@@ -75,8 +75,8 @@ public class DmojStudentListPanel extends JPanel {
             detailsButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    DmojStudentPanel.setUsername(studentName);
-                    s.switchToCard(DmojStudentPanel.CARD_NAME);
+                    DmojStudentScorePanel.setUsername(studentName);
+                    s.switchToCard(DmojStudentScorePanel.CARD_NAME);
                 }
             });
             gbc.gridx = 1;
