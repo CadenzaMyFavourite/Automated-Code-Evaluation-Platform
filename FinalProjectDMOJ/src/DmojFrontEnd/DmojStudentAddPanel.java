@@ -5,7 +5,6 @@
 package DmojFrontEnd;
 
 import DmojBackEnd.DatabaseHelper;
-import Objects.Student;
 import javax.swing.JOptionPane;
 import utils.CardSwitcher;
 
@@ -15,11 +14,28 @@ import utils.CardSwitcher;
  */
 public class DmojStudentAddPanel extends javax.swing.JPanel {
     public static final String CARD_NAME = "studentAdd";
-    public static int questionID=0;
+    private static int questionID=0;
     CardSwitcher switcher = null;
     DatabaseHelper d;
-    public static int studentID=0;
+    private static int studentID=0;
     String code;
+
+    public static int getQuestionID() {
+        return questionID;
+    }
+
+    public static void setQuestionID(int questionID) {
+        DmojStudentAddPanel.questionID = questionID;
+    }
+
+    public static int getStudentID() {
+        return studentID;
+    }
+
+    public static void setStudentID(int studentID) {
+        DmojStudentAddPanel.studentID = studentID;
+    }
+    
     /**
      * Creates new form DmojStudentAddPanel
      */
@@ -31,7 +47,6 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
     private void saveToFile(String code) {
     String filePath = "student_code.txt"; // Specify the file path
     String content = code;
-
         try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
             writer.write(content);
             writer.close();
