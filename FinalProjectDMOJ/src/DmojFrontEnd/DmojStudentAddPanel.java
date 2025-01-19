@@ -158,7 +158,7 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
             saveToFile(code);
             ExaminationPlatform exam = new ExaminationPlatform();
             try {
-                System.out.println(exam.marks("student_code.txt",questionID));
+                d.addGradeResponse(studentID, questionID, exam.marks("student_code.txt",questionID));
             } catch (IOException | InterruptedException ex) {
                 Logger.getLogger(DmojStudentAddPanel.class.getName()).log(Level.SEVERE, null, ex);
             }

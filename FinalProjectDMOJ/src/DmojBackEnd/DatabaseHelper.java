@@ -189,7 +189,7 @@ public class DatabaseHelper {
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject userInfo = jsonArray.getJSONObject(i);
             int questionID = userInfo.getInt("QuestionID");
-            int grade = userInfo.getInt("Grade");
+            String grade = userInfo.getString("Grade");
             Response r = new Response(questionID, grade);
             responses.add(r);
         }
@@ -252,6 +252,12 @@ public class DatabaseHelper {
             query="UPDATE dmojResponse SET CODE = '"+response+"' WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
             sendSQLQuery(query);
         }
+        
+    }
+    public void addGradeResponse(int studentID, int questionID, String graderesponse){     
+        String query="UPDATE dmojResponse SET Grade = '"+graderesponse+"' WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
+        sendSQLQuery(query);
+        
         
     }
     /**

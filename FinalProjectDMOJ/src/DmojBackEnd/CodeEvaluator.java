@@ -26,7 +26,7 @@ public class CodeEvaluator {
         // Compile the student's code
         
         if (compileProcess.waitFor() != 0) {
-            // Capture compilation errors
+            // Capture compilation error
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(compileProcess.getErrorStream()));
             String errorLine;
             while ((errorLine = errorReader.readLine()) != null) {
