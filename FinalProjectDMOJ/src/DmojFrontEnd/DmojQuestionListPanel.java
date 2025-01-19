@@ -85,8 +85,8 @@ public class DmojQuestionListPanel extends JPanel{
             mainPanel.add(detailsButton, gbc);
         }
         
-        JButton backButton = new JButton("Back");
-        backButton.addActionListener(new ActionListener() {
+        JButton logOutButton = new JButton("Log Out");
+        logOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 s.switchToCard(DmojLoginPanel.CARD_NAME);
@@ -95,7 +95,7 @@ public class DmojQuestionListPanel extends JPanel{
         
         JPanel bottomPanel = new JPanel(); 
         
-        bottomPanel.add(backButton);
+        bottomPanel.add(logOutButton);
         add(bottomPanel, BorderLayout.SOUTH);
 
         // Wrap the main panel in a scroll pane
