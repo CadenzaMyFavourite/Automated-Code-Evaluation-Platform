@@ -82,6 +82,19 @@ public class DmojStudentListPanel extends JPanel {
             gbc.gridx = 1;
             mainPanel.add(detailsButton, gbc);
         }
+        
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                s.switchToCard(DmojTeacherMenu.CARD_NAME);
+            }
+        });
+        
+        JPanel bottomPanel = new JPanel(); 
+        
+        bottomPanel.add(backButton);
+        add(bottomPanel, BorderLayout.SOUTH);
 
         // Wrap the main panel in a scroll pane
         JScrollPane scrollPane = new JScrollPane(mainPanel);
