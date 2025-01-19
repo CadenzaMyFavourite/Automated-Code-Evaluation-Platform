@@ -187,6 +187,17 @@ public class DatabaseHelper {
         }
         return responses;
     }
+    public void sortResponse(List<Response> responses){
+        for(int i=1;i<responses.size();i++){
+            Response currentResponse=responses.get(i);
+            int j=i-1;
+            while(j>=0&&responses.get(j).getQuestionID()>currentResponse.getQuestionID()){
+                responses.set(j+1,responses.get(j)); 
+                j--;
+            }
+             responses.set(j+1,currentResponse);
+        }
+    }
     /**
      * this method gets all the text of questions stored in table
      * @return a list of string that can be used in a panel for displaying
@@ -220,7 +231,7 @@ public class DatabaseHelper {
         //if not
         if (result.equals("[]")) {
             //add a new reponse to the table
-            query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"',0);";
+            query="INSERT INTO dmojResponse VALUES(null,"+studentID+","+questionID+",'"+response+"','"+0+"');";
             sendSQLQuery(query);  
         }
         else{
@@ -257,6 +268,16 @@ public class DatabaseHelper {
         List<TestCase> testCases = QuestionParser.parseTestCase(testCase);
         Question q = new Question(questionText, testCases);
         return q;
+    }
+    public List<TestCase> getQT(int questionID){
+        String query = "SELECT TestCase FROM dmojQuestion WHERE QuestionID = " + questionID + ";";
+        String response = sendSQLQuery(query);
+        JSONArray jsonArray = new JSONArray(response);
+        JSONObject questionInfo = jsonArray.getJSONObject(0);
+        String testCase = questionInfo.getString("TestCase");
+        List<TestCase> testCases = QuestionParser.parseTestCase(testCase);
+  
+        return testCases;
     }
     
     public void changeQuestion(Question q, String question, String testCase) {

@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.*;
 
 
-class CodeEvaluator {
+public class CodeEvaluator {
 
     public static int evaluate(String studentCodeFilePath, List<TestCase> testCases) throws IOException, InterruptedException {
          //Write the student code to a file

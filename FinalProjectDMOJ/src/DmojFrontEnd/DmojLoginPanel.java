@@ -136,7 +136,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
                 //pass information to student's adding panel
                 Student stu = new Student (username, password);
                 stu.setId(d.getStudentID(username,password));
-                DmojStudentAddPanel.studentID=d.getStudentID(username,password);
+                DmojStudentAddPanel.setStudentID(d.getStudentID(username,password));
                 //swich to panel with list of questions
                 switcher.switchToCard(DmojQuestionListPanel.CARD_NAME);
             }

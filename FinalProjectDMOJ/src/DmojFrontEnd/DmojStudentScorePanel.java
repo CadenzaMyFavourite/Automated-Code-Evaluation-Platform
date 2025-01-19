@@ -11,7 +11,10 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import utils.CardSwitcher;
 import javax.swing.JLabel;
@@ -27,12 +30,15 @@ public class DmojStudentScorePanel extends JPanel{
     CardSwitcher switcher = null;
     private static String username;
     
+    
     public static String getUsername() {
         return username;
     }
 
     public static void setUsername(String user) {
+        
         username = user;
+        
     }
     
     /**
@@ -56,7 +62,8 @@ public class DmojStudentScorePanel extends JPanel{
 
         // Fetch the list of responses for the given username
         List<Response> responses = d.getResponse(username);
-        System.out.println(responses.size());
+        d.sortResponse(responses);
+
 
         // Set up the main panel with a grid layout for QuestionID and Grade
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -84,11 +91,21 @@ public class DmojStudentScorePanel extends JPanel{
             gbc.gridx = 1;
             mainPanel.add(new JLabel(String.valueOf(response.getGrade())), gbc);
         }
-
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switcher.switchToCard(DmojTeacherMenu.CARD_NAME);
+            }
+        });
         // Wrap the main panel in a scroll pane
+        JPanel bottomPanel = new JPanel(); 
+        
+        bottomPanel.add(backButton);
+        add(bottomPanel, BorderLayout.SOUTH);
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         add(scrollPane, BorderLayout.CENTER);
-
+        
         revalidate();
         repaint();
     }
