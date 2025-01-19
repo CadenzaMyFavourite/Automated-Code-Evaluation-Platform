@@ -158,8 +158,11 @@ public class DatabaseHelper {
         return null; // Return null if the operation fails or is canceled
     }
 
-    
-    public static List<String> getStudentNames() {
+    /**
+     * Get the list of student names
+     * @return the list of student names
+     */
+    public List<String> getStudentNames() {
         
         String query = "SELECT Username FROM dmojStudent;";
         String response = sendSQLQuery(query);
@@ -173,6 +176,11 @@ public class DatabaseHelper {
         return students;
     }
     
+     /**
+      * Get the list of responses submitted before, used for evaluation
+      * @param username username of the student
+      * @return list of responses done by the student 
+      */
     public List<Response> getResponse(String username) {
         String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = '" + username + "';";
         String response = sendSQLQuery(query);
@@ -187,6 +195,11 @@ public class DatabaseHelper {
         }
         return responses;
     }
+    
+    /**
+     * Bubble sort of responses so that questions show based on correct order of ID
+     * @param responses list of responses from database
+     */
     public void sortResponse(List<Response> responses){
         for(int i=1;i<responses.size();i++){
             Response currentResponse=responses.get(i);
@@ -264,7 +277,17 @@ public class DatabaseHelper {
         return id;
     }
     
+    /**
+     * Getting the question selected by the teacher from the question text, used further on for editing the question
+     * @param text question text
+     * @return the question selected by teacher
+     */
     public Question getQT(String text){
+        text = text
+                .replace("\n", "\\n") // Replace line breaks
+                .replace("\t", "\\t") // Replace tabs
+                .replace("'", "\\\\'") // Escape single quotes
+                .replace("\"", "\\\\");
         String query = "SELECT TestCase, Text FROM dmojQuestion WHERE Text = '" + text + "';";
         String response = sendSQLQuery(query);
         JSONArray jsonArray = new JSONArray(response);
@@ -275,6 +298,12 @@ public class DatabaseHelper {
         Question q = new Question(questionText, testCases);
         return q;
     }
+    
+    /**
+     * Get the test cases based on the question ID, used for running the evaluator
+     * @param questionID questionID in dmojQuestion table
+     * @return List of test cases
+     */
     public List<TestCase> getQT(int questionID){
         String query = "SELECT TestCase FROM dmojQuestion WHERE QuestionID = " + questionID + ";";
         String response = sendSQLQuery(query);
@@ -286,6 +315,12 @@ public class DatabaseHelper {
         return testCases;
     }
     
+    /**
+     * Changing the components of a question, used in teacher's interface
+     * @param q initial question information
+     * @param question question text
+     * @param testCase question test case
+     */
     public void changeQuestion(Question q, String question, String testCase) {
         String query = "SELECT QuestionID FROM dmojQuestion WHERE Text = '" + q.getQuestionText() + "';";
         String response = sendSQLQuery(query);
@@ -294,9 +329,13 @@ public class DatabaseHelper {
         int questionID = questionInfo.getInt("QuestionID");
         query = "UPDATE dmojQuestion SET Text = '" + question + "', TestCase = '" + testCase + "' WHERE QuestionID = " + questionID + ";";
         response = sendSQLQuery(query);
-        System.out.println("Works!");
     }
     
+    /**
+     * Adding a question to the database
+     * @param questionText question text
+     * @param testCase question testcase
+     */
     public void addQuestion(String questionText, String testCase) {
         String query = "INSERT INTO dmojQuestion (QuestionID, Text, TestCase) " + "VALUES (null, '" + questionText + "', '" + testCase + "');";
         String response = sendSQLQuery(query);

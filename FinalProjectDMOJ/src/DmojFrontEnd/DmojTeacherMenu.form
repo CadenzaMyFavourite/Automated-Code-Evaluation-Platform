@@ -19,7 +19,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="viewButton" pref="181" max="32767" attributes="0"/>
+                  <Component id="questionButton" pref="181" max="32767" attributes="0"/>
                   <Component id="studentButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="340" max="32767" attributes="0"/>
@@ -32,7 +32,7 @@
               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               <Component id="studentButton" min="-2" pref="68" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Component id="viewButton" min="-2" pref="71" max="-2" attributes="0"/>
+              <Component id="questionButton" min="-2" pref="71" max="-2" attributes="0"/>
               <EmptySpace pref="183" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -47,12 +47,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="viewButton">
+    <Component class="javax.swing.JButton" name="questionButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="view questions"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="questionButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

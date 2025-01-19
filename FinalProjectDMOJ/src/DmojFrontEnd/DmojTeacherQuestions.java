@@ -93,7 +93,7 @@ public class DmojTeacherQuestions extends JPanel{
         });
         
         JButton backButton = new JButton("Back");
-        addButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 s.switchToCard(DmojTeacherMenu.CARD_NAME);

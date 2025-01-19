@@ -46,7 +46,7 @@ public class DmojStudentListPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // Fetch student list from database helper
-        List<String> studentNames = DatabaseHelper.getStudentNames();
+        List<String> studentNames = d.getStudentNames();
 
         // Set up the main panel with a grid layout for student names and buttons
         JPanel mainPanel = new JPanel(new GridBagLayout());
