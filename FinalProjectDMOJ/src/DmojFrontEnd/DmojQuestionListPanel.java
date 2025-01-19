@@ -78,7 +78,6 @@ public class DmojQuestionListPanel extends JPanel{
                 public void actionPerformed(ActionEvent e) {
                     
                     DmojStudentAddPanel.setQuestionID(questionId+1);
-                    System.out.println(DmojStudentAddPanel.CARD_NAME);
                     s.switchToCard(DmojStudentAddPanel.CARD_NAME);
                 }
             });

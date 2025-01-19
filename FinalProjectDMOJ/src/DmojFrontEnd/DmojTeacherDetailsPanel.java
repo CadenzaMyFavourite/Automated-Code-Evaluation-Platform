@@ -50,12 +50,13 @@ public class DmojTeacherDetailsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        testCaseTextArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        questionTextArea = new javax.swing.JTextArea();
+        questionLabel = new javax.swing.JLabel();
+        testCaseLabel = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
+        formatLabel = new javax.swing.JLabel();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -63,17 +64,17 @@ public class DmojTeacherDetailsPanel extends javax.swing.JPanel {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        testCaseTextArea.setColumns(20);
+        testCaseTextArea.setRows(5);
+        jScrollPane1.setViewportView(testCaseTextArea);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        questionTextArea.setColumns(20);
+        questionTextArea.setRows(5);
+        jScrollPane2.setViewportView(questionTextArea);
 
-        jLabel1.setText("Question");
+        questionLabel.setText("Question");
 
-        jLabel2.setText("TestCase");
+        testCaseLabel.setText("TestCase");
 
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +82,8 @@ public class DmojTeacherDetailsPanel extends javax.swing.JPanel {
                 submitButtonActionPerformed(evt);
             }
         });
+
+        formatLabel.setText("Format: {input,input;output}");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,57 +96,85 @@ public class DmojTeacherDetailsPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(150, 150, 150))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(396, 396, 396)
                 .addComponent(submitButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(questionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(formatLabel)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(testCaseLabel)
+                        .addGap(50, 50, 50)))
+                .addGap(90, 90, 90))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(questionLabel)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(testCaseLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(formatLabel)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(submitButton)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // Load Test Cases
         String result = "";
         for (int i = 0; i < q.getTestCases().size(); i ++ ) {
             result = result + "{" + q.getTestCases().get(i).toString() + "}";
         }
-        jTextArea1.setText(result);
-        jTextArea2.setText(q.getQuestionText());
+        
+        // Set textarea text
+        testCaseTextArea.setText(result);
+        String question = q.getQuestionText();
+        question = question
+            .replace("\\n", "\n") // Replace line breaks
+            .replace("\\t", "\t") // Replace tabs
+            .replace("\\\\'", "'") // Escape single quotes
+            .replace("\\\\", "\"");
+        questionTextArea.setText(question);
     }//GEN-LAST:event_formComponentShown
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        String question = jTextArea2.getText();
-        String testCase = jTextArea1.getText();
+        // Modify existing question
+        String question = questionTextArea.getText();
+        question = question
+            .replace("\n", "\\n") // Replace line breaks
+            .replace("\t", "\\t") // Replace tabs
+            .replace("'", "\\\\'") // Escape single quotes
+            .replace("\"", "\\\\");
+        
+        String testCase = testCaseTextArea.getText();
+        
         
         d.changeQuestion(q, question, testCase);
     }//GEN-LAST:event_submitButtonActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel formatLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel questionLabel;
+    private javax.swing.JTextArea questionTextArea;
     private javax.swing.JButton submitButton;
+    private javax.swing.JLabel testCaseLabel;
+    private javax.swing.JTextArea testCaseTextArea;
     // End of variables declaration//GEN-END:variables
 }

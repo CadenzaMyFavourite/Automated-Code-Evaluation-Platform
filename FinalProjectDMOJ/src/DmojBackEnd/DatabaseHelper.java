@@ -288,7 +288,6 @@ public class DatabaseHelper {
         int questionID = questionInfo.getInt("QuestionID");
         query = "UPDATE dmojQuestion SET Text = '" + question + "', TestCase = '" + testCase + "' WHERE QuestionID = " + questionID + ";";
         response = sendSQLQuery(query);
-        System.out.println("Works!");
     }
     
     public void addQuestion(String questionText, String testCase) {

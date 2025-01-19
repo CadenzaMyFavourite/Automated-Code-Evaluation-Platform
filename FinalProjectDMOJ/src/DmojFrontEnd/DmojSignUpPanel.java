@@ -36,13 +36,13 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         nameTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
         SignUpButton = new javax.swing.JButton();
         passwordTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        noticeLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        userTypeComboBox = new javax.swing.JComboBox<>();
 
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +50,7 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Username");
+        usernameLabel.setText("Username");
 
         SignUpButton.setText("Sign Up");
         SignUpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -59,9 +59,9 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("password");
+        passwordLabel.setText("password");
 
-        jLabel3.setText("Already have an account? login");
+        noticeLabel.setText("Already have an account? login");
 
         loginButton.setText("login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +70,7 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Teacher" }));
+        userTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Teacher" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,7 +78,7 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(405, 405, 405)
-                .addComponent(jLabel2)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(loginButton)
                 .addGap(182, 182, 182))
@@ -88,14 +88,14 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
                         .addGap(389, 389, 389)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SignUpButton)
-                            .addComponent(jLabel1)))
+                            .addComponent(usernameLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101)
                         .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
-                        .addComponent(jLabel3))
+                        .addComponent(noticeLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(307, 307, 307)
                         .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -105,15 +105,15 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(160, 160, 160)
-                .addComponent(jLabel1)
+                .addComponent(usernameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(noticeLabel)
+                    .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(passwordLabel)
                     .addComponent(loginButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +134,7 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
         //first check combobox to check which type of user are we selecting
-        String user=jComboBox1.getSelectedItem().toString();
+        String user=userTypeComboBox.getSelectedItem().toString();
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
         //output a message if any of inputs is 0
@@ -164,12 +164,12 @@ public class DmojSignUpPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SignUpButton;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel noticeLabel;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JComboBox<String> userTypeComboBox;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

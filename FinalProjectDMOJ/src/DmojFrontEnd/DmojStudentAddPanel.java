@@ -48,6 +48,8 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
         this.d=d;
         initComponents();
     }
+    
+    
     private void saveToFile(String code) {
     String filePath = "student_code.txt"; // Specify the file path
     String content = code;
@@ -72,7 +74,7 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
         uploadButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        codeBox = new javax.swing.JTextArea();
         BackButton = new javax.swing.JButton();
 
         uploadButton.setText("upload");
@@ -89,9 +91,9 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        codeBox.setColumns(20);
+        codeBox.setRows(5);
+        jScrollPane1.setViewportView(codeBox);
 
         BackButton.setText("Go Back");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,26 +134,23 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         code=d.readFile();
-        jTextArea1.setText(code);
+        codeBox.setText(code);
     }//GEN-LAST:event_uploadButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         //if the textbox is not empty
-        if(jTextArea1.getText().equals("")==false){
+        if(codeBox.getText().equals("")==false){
             //read all inputs and update that student's reponse
-//            System.out.println(studentID);
-//            System.out.println(questionID);
-            code=jTextArea1.getText();
-            System.out.println(code);
+            code=codeBox.getText();
             
-            code = jTextArea1.getText()
+            code = codeBox.getText()
             .replace("\n", "\\n") // Replace line breaks
             .replace("\t", "\\t") // Replace tabs
             .replace("'", "\\\\'") // Escape single quotes
             .replace("\"", "\\\\");
             
             d.addResponse(studentID, questionID, code);
-            code = jTextArea1.getText()
+            code = codeBox.getText()
             .replace("\\n", "\n") // Replace line breaks
             .replace("\\t", "\t") // Replace tabs
             .replace("\\\\'", "'") // Escape single quotes
@@ -182,8 +181,8 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
+    private javax.swing.JTextArea codeBox;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton submitButton;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
