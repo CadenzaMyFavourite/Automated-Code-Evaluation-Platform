@@ -98,6 +98,7 @@ public class DmojStudentScorePanel extends JPanel{
                 switcher.switchToCard(DmojStudentListPanel.CARD_NAME);
             }
         });
+        
         // Wrap the main panel in a scroll pane
         JPanel bottomPanel = new JPanel(); 
         

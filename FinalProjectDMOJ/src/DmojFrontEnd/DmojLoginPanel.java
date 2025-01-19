@@ -45,6 +45,12 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         noticeLabel = new javax.swing.JLabel();
         RegisterButton = new javax.swing.JButton();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
         usernameLabel.setText("Username");
 
         nameTextField.setPreferredSize(new java.awt.Dimension(164, 30));
@@ -165,6 +171,11 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         //switch to sign up panel
         switcher.switchToCard(DmojSignUpPanel.CARD_NAME);
     }//GEN-LAST:event_RegisterButtonActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        nameTextField.setText("");
+        passwordTextField.setText("");
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -35,6 +35,7 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
 
         studentButton = new javax.swing.JButton();
         questionButton = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
 
         studentButton.setText("view students");
         studentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -50,15 +51,27 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
             }
         });
 
+        logOutButton.setText("Log Out");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(331, 331, 331)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(questionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(studentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(331, 331, 331)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(questionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(studentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(388, 388, 388)
+                        .addComponent(logOutButton)))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -68,7 +81,9 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
                 .addComponent(studentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addComponent(questionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(logOutButton)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -80,8 +95,13 @@ public class DmojTeacherMenu extends javax.swing.JPanel {
         switcher.switchToCard(DmojTeacherQuestions.CARD_NAME);
     }//GEN-LAST:event_questionButtonActionPerformed
 
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        switcher.switchToCard(DmojLoginPanel.CARD_NAME);
+    }//GEN-LAST:event_logOutButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton logOutButton;
     private javax.swing.JButton questionButton;
     private javax.swing.JButton studentButton;
     // End of variables declaration//GEN-END:variables
