@@ -89,7 +89,11 @@ public class DmojStudentScorePanel extends JPanel{
 
             // Add Grade label
             gbc.gridx = 1;
+            if(response.getGrade().equals("0")){
+                mainPanel.add(new JLabel("Not Start"), gbc);
+            }else{
             mainPanel.add(new JLabel(String.valueOf(response.getGrade())), gbc);
+            }
         }
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {

@@ -10,13 +10,13 @@ package Objects;
  */
 public class Response {
     private int questionID;
-    private int grade;
+    private String grade;
 
     public int getQuestionID() {
         return questionID;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
@@ -24,11 +24,11 @@ public class Response {
         this.questionID = questionID;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
-    public Response(int questionID, int grade) {
+    public Response(int questionID, String grade) {
         this.questionID = questionID;
         this.grade = grade;
     }
