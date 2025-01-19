@@ -158,8 +158,11 @@ public class DatabaseHelper {
         return null; // Return null if the operation fails or is canceled
     }
 
-    
-    public static List<String> getStudentNames() {
+    /**
+     * Get the list of student names
+     * @return the list of student names
+     */
+    public List<String> getStudentNames() {
         
         String query = "SELECT Username FROM dmojStudent;";
         String response = sendSQLQuery(query);
@@ -173,6 +176,11 @@ public class DatabaseHelper {
         return students;
     }
     
+     /**
+      * Get the list of responses submitted before, used for evaluation
+      * @param username username of the student
+      * @return list of responses done by the student 
+      */
     public List<Response> getResponse(String username) {
         String query = "SELECT dr.QuestionID, dr.Grade FROM dmojResponse dr JOIN dmojStudent ds ON dr.StudentID = ds.StudentID WHERE ds.Username = '" + username + "';";
         String response = sendSQLQuery(query);
@@ -187,6 +195,11 @@ public class DatabaseHelper {
         }
         return responses;
     }
+    
+    /**
+     * Bubble sort of responses so that questions show based on correct order of ID
+     * @param responses list of responses from database
+     */
     public void sortResponse(List<Response> responses){
         for(int i=1;i<responses.size();i++){
             Response currentResponse=responses.get(i);

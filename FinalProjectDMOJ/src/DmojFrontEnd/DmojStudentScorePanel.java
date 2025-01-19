@@ -95,7 +95,7 @@ public class DmojStudentScorePanel extends JPanel{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switcher.switchToCard(DmojTeacherMenu.CARD_NAME);
+                switcher.switchToCard(DmojStudentListPanel.CARD_NAME);
             }
         });
         // Wrap the main panel in a scroll pane
