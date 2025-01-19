@@ -72,7 +72,7 @@ public class DmojQuestionListPanel extends JPanel{
             mainPanel.add(new JLabel(studentName), gbc);
 
             // Add button to navigate to a separate page
-            JButton detailsButton = new JButton("View Details");
+            JButton detailsButton = new JButton("Submit Work");
             detailsButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
