@@ -258,7 +258,17 @@ public class DatabaseHelper {
         return id;
     }
     
+    /**
+     * Getting the question selected by the teacher from the question text, used further on for editing the question
+     * @param text question text
+     * @return the question selected by teacher
+     */
     public Question getQT(String text){
+        text = text
+                .replace("\n", "\\n") // Replace line breaks
+                .replace("\t", "\\t") // Replace tabs
+                .replace("'", "\\\\'") // Escape single quotes
+                .replace("\"", "\\\\");
         String query = "SELECT TestCase, Text FROM dmojQuestion WHERE Text = '" + text + "';";
         String response = sendSQLQuery(query);
         JSONArray jsonArray = new JSONArray(response);
@@ -269,6 +279,12 @@ public class DatabaseHelper {
         Question q = new Question(questionText, testCases);
         return q;
     }
+    
+    /**
+     * Get the test cases based on the question ID, used for running the evaluator
+     * @param questionID questionID in dmojQuestion table
+     * @return List of test cases
+     */
     public List<TestCase> getQT(int questionID){
         String query = "SELECT TestCase FROM dmojQuestion WHERE QuestionID = " + questionID + ";";
         String response = sendSQLQuery(query);
@@ -280,6 +296,12 @@ public class DatabaseHelper {
         return testCases;
     }
     
+    /**
+     * Changing the components of a question, used in teacher's interface
+     * @param q initial question information
+     * @param question question text
+     * @param testCase question test case
+     */
     public void changeQuestion(Question q, String question, String testCase) {
         String query = "SELECT QuestionID FROM dmojQuestion WHERE Text = '" + q.getQuestionText() + "';";
         String response = sendSQLQuery(query);
@@ -290,6 +312,11 @@ public class DatabaseHelper {
         response = sendSQLQuery(query);
     }
     
+    /**
+     * Adding a question to the database
+     * @param questionText question text
+     * @param testCase question testcase
+     */
     public void addQuestion(String questionText, String testCase) {
         String query = "INSERT INTO dmojQuestion (QuestionID, Text, TestCase) " + "VALUES (null, '" + questionText + "', '" + testCase + "');";
         String response = sendSQLQuery(query);
