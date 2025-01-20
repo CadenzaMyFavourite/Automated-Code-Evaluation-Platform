@@ -6,6 +6,7 @@ package DmojFrontEnd;
 
 import Objects.Student;
 import DmojBackEnd.DatabaseHelper;
+import java.util.List;
 import javax.swing.JOptionPane;
 import utils.CardSwitcher;
 
@@ -17,6 +18,8 @@ public class DmojLoginPanel extends javax.swing.JPanel {
     public static final String CARD_NAME = "login";
     DatabaseHelper d;
     CardSwitcher switcher = null;
+    private static int questionID=0;
+    private static int studentID=0;
     /**
      * Creates new form DmojLoginPanel
      * @param p
@@ -126,6 +129,7 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         String username=nameTextField.getText();
         String password=passwordTextField.getText();
         
+        
         if(username.equals("")||password.equals("")){
             JOptionPane.showMessageDialog(null, "Please ensure inputs are not empty", "Error",  JOptionPane.INFORMATION_MESSAGE);
  
@@ -134,6 +138,12 @@ public class DmojLoginPanel extends javax.swing.JPanel {
         else if (d.userExists(username)==1){
             //if the username is correct
             if (d.loginUser(username, password) == 1) {
+//                studentID = d.getStudentID(username, password);
+//                List<String> questions = d.getQuestions();
+//                for(int i=0; i<questions.size();i++){
+//                    questionID = i;
+//                    d.addResponse(studentID, questionID, "");
+//                }
                 //pass information to student's adding panel
                 Student stu = new Student (username, password);
                 stu.setId(d.getStudentID(username,password));

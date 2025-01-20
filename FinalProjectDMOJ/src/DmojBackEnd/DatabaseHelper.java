@@ -61,6 +61,8 @@ public class DatabaseHelper {
     public void registerStudent(String name, String password)  {
         String query="INSERT into dmojStudent VALUES(NULL,'"+name+"','"+password+"');";
         sendSQLQuery(query);
+        
+        
     }
     /**
      * send sql queries to databases that adds a teacher
