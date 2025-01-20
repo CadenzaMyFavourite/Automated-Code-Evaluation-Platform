@@ -72,7 +72,7 @@ public class DmojQuestionListPanel extends JPanel{
             mainPanel.add(new JLabel(studentName), gbc);
 
             // Add button to navigate to a separate page
-            JButton detailsButton = new JButton("View Details");
+            JButton detailsButton = new JButton("Submit Work");
             detailsButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -84,6 +84,19 @@ public class DmojQuestionListPanel extends JPanel{
             gbc.gridx = 1;
             mainPanel.add(detailsButton, gbc);
         }
+        
+        JButton logOutButton = new JButton("Log Out");
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                s.switchToCard(DmojLoginPanel.CARD_NAME);
+            }
+        });
+        
+        JPanel bottomPanel = new JPanel(); 
+        
+        bottomPanel.add(logOutButton);
+        add(bottomPanel, BorderLayout.SOUTH);
 
         // Wrap the main panel in a scroll pane
         JScrollPane scrollPane = new JScrollPane(mainPanel);
