@@ -256,6 +256,13 @@ public class DatabaseHelper {
         }
         
     }
+    /**
+     * this method insert a new response into the response panel grade, 
+     * @param studentID student id of each student(a foreign key in the response table)
+     * @param questionID question id of each questions(a foreign key in the response table)
+     * @param response the mark a/b
+     * author: Jackie
+     */
     public void addGradeResponse(int studentID, int questionID, String graderesponse){     
         String query="UPDATE dmojResponse SET Grade = '"+graderesponse+"' WHERE StudentID = "+studentID+ " AND QuestionID ="+questionID+";";
         sendSQLQuery(query);

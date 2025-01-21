@@ -87,7 +87,7 @@ public class DmojStudentScorePanel extends JPanel{
             gbc.gridx = 0;
             mainPanel.add(new JLabel(String.valueOf(response.getQuestionID())), gbc);
 
-            // Add Grade label
+            // Add Grade label by jackie
             gbc.gridx = 1;
             if(response.getGrade().equals("0")){
                 mainPanel.add(new JLabel("Not Start"), gbc);

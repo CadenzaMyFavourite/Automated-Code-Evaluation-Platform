@@ -14,7 +14,7 @@ import utils.CardSwitcher;
 
 /**
  *
- * @author HP User
+ * @author HP User$Jackie
  */
 public class DmojStudentAddPanel extends javax.swing.JPanel {
     public static final String CARD_NAME = "studentAdd";
@@ -50,7 +50,7 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
     }
     
     
-    private void saveToFile(String code) {
+    private void saveToFile(String code){//jackie
     String filePath = "student_code.txt"; // Specify the file path
     String content = code;
         try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
@@ -139,6 +139,7 @@ public class DmojStudentAddPanel extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         //if the textbox is not empty
+        //Jackie
         if(codeBox.getText().equals("")==false){
             //read all inputs and update that student's reponse
             code=codeBox.getText();
