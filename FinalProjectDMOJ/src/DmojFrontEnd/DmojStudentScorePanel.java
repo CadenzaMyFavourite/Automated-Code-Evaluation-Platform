@@ -6,7 +6,6 @@ package DmojFrontEnd;
 
 import DmojBackEnd.DatabaseHelper;
 import Objects.Response;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addComponentListener;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
