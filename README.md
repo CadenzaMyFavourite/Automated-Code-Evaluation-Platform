@@ -1,4 +1,4 @@
-# FinalProjectDMOJ
+# Automated-Code-Evaluation-Platform
 
 A Java NetBeans project for a simple DMOJ-style coding platform prototype. The project currently includes:
 
